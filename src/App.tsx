@@ -4,6 +4,7 @@ import { BottomNavBar } from '@/components/ui/bottom-nav-bar'
 import { Home } from '@/pages/Home'
 import { Discover } from '@/pages/Discover'
 import { MySpace } from '@/pages/MySpace'
+import { Settings } from './pages/Settings'
 
 function App() {
   const [activeTab, setActiveTab] = useState(0);
@@ -13,7 +14,8 @@ function App() {
       case 0: return <Home />;
       case 1: return <Discover />;
       case 2: return <MySpace />;
-      // Fallback for Notifications (3) and Help (4) until built
+      case 4: return <Settings />;
+      // Fallback for Notifications (3) until built
       default: return <Home />;
     }
   };

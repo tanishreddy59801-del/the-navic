@@ -54,56 +54,61 @@ export function MySpace() {
   const { user, mySkills, deleteSkill } = useAppContext();
 
   return (
-    <div className="w-full min-h-screen bg-slate-50 relative pt-32 pb-32 px-6">
+    <div className="w-full min-h-screen bg-slate-50 dark:bg-slate-900 relative pt-32 pb-32 px-6 transition-colors duration-300">
+      {/* Background Blobs */}
+      <div className="absolute top-0 left-0 w-full h-full overflow-hidden z-0 pointer-events-none">
+        <div className="absolute top-[-10%] left-[-10%] w-[500px] h-[500px] rounded-full bg-blue-400/10 mix-blend-multiply dark:mix-blend-lighten filter blur-[100px]" />
+        <div className="absolute top-[20%] right-[-5%] w-[400px] h-[400px] rounded-full bg-emerald-400/10 mix-blend-multiply dark:mix-blend-lighten filter blur-[80px]" />
+      </div>
       <div className="max-w-5xl mx-auto relative z-10">
         
         {/* Profile Header Card */}
-        <div className="bg-white rounded-[2rem] p-8 md:p-10 border-2 border-slate-100 shadow-2xl shadow-slate-200/40 mb-12 flex flex-col md:flex-row items-center md:items-start gap-8 relative overflow-hidden">
-          <div className="absolute top-0 right-0 w-64 h-64 bg-gradient-to-br from-blue-500/10 to-purple-500/10 rounded-full blur-3xl" />
+        <div className="bg-white dark:bg-slate-800 rounded-[2.5rem] p-8 md:p-12 shadow-2xl shadow-slate-200/40 dark:shadow-none border border-slate-100 dark:border-slate-700 flex flex-col md:flex-row items-center md:items-start gap-8 mb-12 relative overflow-hidden transition-colors duration-300">
+          <div className="absolute top-0 right-0 w-64 h-64 bg-gradient-to-bl from-blue-50 to-transparent dark:from-blue-900/20 rounded-bl-full pointer-events-none" />
           
           <div className="relative">
             <div className="w-32 h-32 rounded-full bg-gradient-to-tr from-blue-600 to-indigo-500 p-1 shadow-xl shadow-blue-500/30">
               <img 
                 src={user.avatarUrl} 
                 alt="Profile" 
-                className="w-full h-full rounded-full border-4 border-white object-cover"
+                className="w-full h-full rounded-full border-4 border-white dark:border-slate-800 object-cover"
               />
             </div>
-            <div className="absolute bottom-0 right-0 bg-emerald-500 w-8 h-8 rounded-full border-4 border-white shadow-sm flex items-center justify-center">
+            <div className="absolute bottom-0 right-0 bg-emerald-500 w-8 h-8 rounded-full border-4 border-white dark:border-slate-800 shadow-sm flex items-center justify-center">
               <CheckCircle2 size={14} className="text-white" strokeWidth={4} />
             </div>
           </div>
 
           <div className="flex-1 text-center md:text-left z-10">
-            <h1 className="text-4xl font-black text-slate-800 mb-2 tracking-tight" style={{ fontFamily: "'Fredoka', 'Nunito', sans-serif" }}>Welcome back, {user.name}!</h1>
-            <p className="text-lg text-slate-500 font-medium mb-6">Web Developer & aspiring Spanish speaker.</p>
+            <h1 className="text-4xl font-black text-slate-800 dark:text-white mb-2 tracking-tight transition-colors duration-300" style={{ fontFamily: "'Fredoka', 'Nunito', sans-serif" }}>Welcome back, {user.name}!</h1>
+            <p className="text-lg text-slate-500 dark:text-slate-400 font-medium mb-6">Web Developer & aspiring Spanish speaker.</p>
             
             <div className="flex flex-wrap items-center justify-center md:justify-start gap-4">
-              <div className="bg-slate-50 rounded-2xl px-6 py-4 border border-slate-100 flex items-center gap-4">
-                <div className="w-12 h-12 rounded-full bg-blue-100 flex items-center justify-center text-blue-600">
+              <div className="bg-slate-50 dark:bg-slate-900 rounded-2xl px-6 py-4 border border-slate-100 dark:border-slate-700 flex items-center gap-4 transition-colors duration-300">
+                <div className="w-12 h-12 rounded-full bg-blue-100 dark:bg-blue-900/30 flex items-center justify-center text-blue-600 dark:text-blue-400">
                   <PlayCircle size={24} strokeWidth={2.5} />
                 </div>
                 <div>
-                  <div className="text-2xl font-black text-slate-800 leading-none mb-1">{user.hoursLearned}</div>
-                  <div className="text-sm font-bold text-slate-500 uppercase tracking-wider">Hours Learned</div>
+                  <div className="text-2xl font-black text-slate-800 dark:text-white leading-none mb-1">{user.hoursLearned}</div>
+                  <div className="text-sm font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider">Hours Learned</div>
                 </div>
               </div>
-              <div className="bg-slate-50 rounded-2xl px-6 py-4 border border-slate-100 flex items-center gap-4">
-                <div className="w-12 h-12 rounded-full bg-purple-100 flex items-center justify-center text-purple-600">
+              <div className="bg-slate-50 dark:bg-slate-900 rounded-2xl px-6 py-4 border border-slate-100 dark:border-slate-700 flex items-center gap-4 transition-colors duration-300">
+                <div className="w-12 h-12 rounded-full bg-purple-100 dark:bg-purple-900/30 flex items-center justify-center text-purple-600 dark:text-purple-400">
                   <UserCircle size={24} strokeWidth={2.5} />
                 </div>
                 <div>
-                  <div className="text-2xl font-black text-slate-800 leading-none mb-1">{user.hoursTaught}</div>
-                  <div className="text-sm font-bold text-slate-500 uppercase tracking-wider">Hours Taught</div>
+                  <div className="text-2xl font-black text-slate-800 dark:text-white leading-none mb-1">{user.hoursTaught}</div>
+                  <div className="text-sm font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider">Hours Taught</div>
                 </div>
               </div>
-              <div className="bg-slate-50 rounded-2xl px-6 py-4 border border-slate-100 flex items-center gap-4">
-                <div className="w-12 h-12 rounded-full bg-emerald-100 flex items-center justify-center text-emerald-600">
+              <div className="bg-slate-50 dark:bg-slate-900 rounded-2xl px-6 py-4 border border-slate-100 dark:border-slate-700 flex items-center gap-4 transition-colors duration-300">
+                <div className="w-12 h-12 rounded-full bg-emerald-100 dark:bg-emerald-900/30 flex items-center justify-center text-emerald-600 dark:text-emerald-400">
                   <Coins size={24} strokeWidth={2.5} />
                 </div>
                 <div>
-                  <div className="text-2xl font-black text-slate-800 leading-none mb-1">{user.credits}</div>
-                  <div className="text-sm font-bold text-slate-500 uppercase tracking-wider">Credits</div>
+                  <div className="text-2xl font-black text-slate-800 dark:text-white leading-none mb-1">{user.credits}</div>
+                  <div className="text-sm font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider">Credits</div>
                 </div>
               </div>
             </div>
@@ -111,32 +116,32 @@ export function MySpace() {
         </div>
 
         {/* Tabs */}
-        <div className="flex items-center gap-4 mb-8 border-b-2 border-slate-100 pb-px">
+        <div className="flex items-center gap-4 mb-8 border-b-2 border-slate-100 dark:border-slate-800 pb-px transition-colors duration-300">
           <button 
             onClick={() => setActiveTab('upcoming')}
-            className={`pb-4 text-xl font-bold transition-all relative ${activeTab === 'upcoming' ? 'text-slate-900' : 'text-slate-400 hover:text-slate-600'}`}
+            className={`pb-4 text-xl font-bold transition-all relative ${activeTab === 'upcoming' ? 'text-slate-900 dark:text-white' : 'text-slate-400 dark:text-slate-500 hover:text-slate-600 dark:hover:text-slate-300'}`}
           >
             My Schedule
             {activeTab === 'upcoming' && (
-              <motion.div layoutId="activeTab" className="absolute bottom-[-2px] left-0 right-0 h-1 bg-slate-900 rounded-t-full" />
+              <motion.div layoutId="activeTab" className="absolute bottom-[-2px] left-0 right-0 h-1 bg-slate-900 dark:bg-white rounded-t-full" />
             )}
           </button>
           <button 
             onClick={() => setActiveTab('skills')}
-            className={`pb-4 text-xl font-bold transition-all relative ${activeTab === 'skills' ? 'text-slate-900' : 'text-slate-400 hover:text-slate-600'}`}
+            className={`pb-4 text-xl font-bold transition-all relative ${activeTab === 'skills' ? 'text-slate-900 dark:text-white' : 'text-slate-400 dark:text-slate-500 hover:text-slate-600 dark:hover:text-slate-300'}`}
           >
             My Skills
             {activeTab === 'skills' && (
-              <motion.div layoutId="activeTab" className="absolute bottom-[-2px] left-0 right-0 h-1 bg-slate-900 rounded-t-full" />
+              <motion.div layoutId="activeTab" className="absolute bottom-[-2px] left-0 right-0 h-1 bg-slate-900 dark:bg-white rounded-t-full" />
             )}
           </button>
           <button 
             onClick={() => setActiveTab('history')}
-            className={`pb-4 text-xl font-bold transition-all relative ${activeTab === 'history' ? 'text-slate-900' : 'text-slate-400 hover:text-slate-600'}`}
+            className={`pb-4 text-xl font-bold transition-all relative ${activeTab === 'history' ? 'text-slate-900 dark:text-white' : 'text-slate-400 dark:text-slate-500 hover:text-slate-600 dark:hover:text-slate-300'}`}
           >
             History & Courses
             {activeTab === 'history' && (
-              <motion.div layoutId="activeTab" className="absolute bottom-[-2px] left-0 right-0 h-1 bg-slate-900 rounded-t-full" />
+              <motion.div layoutId="activeTab" className="absolute bottom-[-2px] left-0 right-0 h-1 bg-slate-900 dark:bg-white rounded-t-full" />
             )}
           </button>
         </div>
@@ -154,28 +159,28 @@ export function MySpace() {
                 className="flex flex-col gap-4"
               >
                 {upcomingLessons.map(lesson => (
-                  <div key={lesson.id} className="bg-white rounded-2xl p-6 border-2 border-slate-100 shadow-lg shadow-slate-200/20 flex flex-col md:flex-row items-center gap-6 group hover:border-slate-200 transition-colors">
+                  <div key={lesson.id} className="bg-white dark:bg-slate-800 rounded-2xl p-6 border-2 border-slate-100 dark:border-slate-700 shadow-lg shadow-slate-200/20 dark:shadow-none flex flex-col md:flex-row items-center gap-6 group hover:border-slate-200 dark:hover:border-slate-600 transition-colors">
                     <div className={`w-16 h-16 rounded-2xl flex items-center justify-center shrink-0 shadow-inner
-                      ${lesson.color === 'blue' ? 'bg-blue-100 text-blue-600' : 'bg-purple-100 text-purple-600'}
+                      ${lesson.color === 'blue' ? 'bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400' : 'bg-purple-100 dark:bg-purple-900/30 text-purple-600 dark:text-purple-400'}
                     `}>
                       <Calendar size={28} strokeWidth={2.5} />
                     </div>
                     
                     <div className="flex-1 text-center md:text-left">
                       <div className="flex items-center justify-center md:justify-start gap-2 mb-2">
-                        <span className={`px-2.5 py-1 rounded-md text-[10px] font-black uppercase tracking-widest ${lesson.type === 'Learning' ? 'bg-slate-100 text-slate-600' : 'bg-slate-800 text-white'}`}>
+                        <span className={`px-2.5 py-1 rounded-md text-[10px] font-black uppercase tracking-widest ${lesson.type === 'Learning' ? 'bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-300' : 'bg-slate-800 dark:bg-slate-900 text-white'}`}>
                           {lesson.type}
                         </span>
-                        <h3 className="text-xl font-bold text-slate-800">{lesson.title}</h3>
+                        <h3 className="text-xl font-bold text-slate-800 dark:text-white">{lesson.title}</h3>
                       </div>
-                      <div className="flex flex-wrap items-center justify-center md:justify-start gap-4 text-sm font-bold text-slate-500">
+                      <div className="flex flex-wrap items-center justify-center md:justify-start gap-4 text-sm font-bold text-slate-500 dark:text-slate-400">
                         <span className="flex items-center gap-1.5"><UserCircle size={16} /> {lesson.partner}</span>
                         <span className="flex items-center gap-1.5"><Clock size={16} /> {lesson.date}</span>
                         <span className="flex items-center gap-1.5"><PlayCircle size={16} /> {lesson.duration}</span>
                       </div>
                     </div>
 
-                    <button className="w-full md:w-auto px-6 py-3 bg-slate-900 text-white rounded-xl font-bold flex items-center justify-center gap-2 hover:bg-slate-800 transition-colors shadow-xl shadow-slate-900/20">
+                    <button className="w-full md:w-auto px-6 py-3 bg-slate-900 dark:bg-white text-white dark:text-slate-900 rounded-xl font-bold flex items-center justify-center gap-2 hover:bg-slate-800 dark:hover:bg-slate-100 transition-colors shadow-xl shadow-slate-900/20 dark:shadow-none">
                       <Video size={18} strokeWidth={2.5} />
                       Join Call
                     </button>
@@ -196,36 +201,36 @@ export function MySpace() {
                 {/* Add New Skill Card */}
                 <button 
                   onClick={() => setIsAddSkillModalOpen(true)}
-                  className="bg-transparent rounded-[2rem] border-4 border-dashed border-slate-200 hover:border-blue-400 hover:bg-blue-50/50 transition-colors duration-300 flex flex-col items-center justify-center p-8 min-h-[200px] group cursor-pointer"
+                  className="bg-transparent rounded-[2rem] border-4 border-dashed border-slate-200 dark:border-slate-700 hover:border-blue-400 dark:hover:border-blue-500 hover:bg-blue-50/50 dark:hover:bg-blue-900/20 transition-colors duration-300 flex flex-col items-center justify-center p-8 min-h-[200px] group cursor-pointer"
                 >
-                  <div className="w-16 h-16 rounded-full bg-slate-100 group-hover:bg-blue-100 flex items-center justify-center text-slate-400 group-hover:text-blue-600 transition-colors mb-4">
+                  <div className="w-16 h-16 rounded-full bg-slate-100 dark:bg-slate-800 group-hover:bg-blue-100 dark:group-hover:bg-blue-900/40 flex items-center justify-center text-slate-400 dark:text-slate-500 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors mb-4">
                     <Plus size={32} strokeWidth={3} />
                   </div>
-                  <span className="font-bold text-lg text-slate-500 group-hover:text-blue-600 transition-colors">Add a Skill</span>
+                  <span className="font-bold text-lg text-slate-500 dark:text-slate-400 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">Add a Skill</span>
                 </button>
 
                 {/* Existing Skills */}
                 {mySkills.map(skill => (
-                  <div key={skill.id} className="bg-white rounded-[2rem] p-6 border-2 border-slate-100 shadow-xl shadow-slate-200/30 flex flex-col hover:-translate-y-2 transition-transform duration-300">
+                  <div key={skill.id} className="bg-white dark:bg-slate-800 rounded-[2rem] p-6 border-2 border-slate-100 dark:border-slate-700 shadow-xl shadow-slate-200/30 dark:shadow-none flex flex-col hover:-translate-y-2 transition-transform duration-300">
                     <div className="flex-1">
                       <span className={`inline-block px-3 py-1 rounded-full text-xs font-black uppercase tracking-wider mb-4
-                        ${skill.color === 'blue' ? 'bg-blue-100 text-blue-600' : ''}
-                        ${skill.color === 'purple' ? 'bg-purple-100 text-purple-600' : ''}
-                        ${skill.color === 'emerald' ? 'bg-emerald-100 text-emerald-600' : ''}
+                        ${skill.color === 'blue' ? 'bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400' : ''}
+                        ${skill.color === 'purple' ? 'bg-purple-100 dark:bg-purple-900/30 text-purple-600 dark:text-purple-400' : ''}
+                        ${skill.color === 'emerald' ? 'bg-emerald-100 dark:bg-emerald-900/30 text-emerald-600 dark:text-emerald-400' : ''}
                       `}>
                         {skill.category}
                       </span>
-                      <h3 className="font-bold text-xl text-slate-800 mb-2 leading-tight">{skill.title}</h3>
+                      <h3 className="font-bold text-xl text-slate-800 dark:text-white mb-2 leading-tight">{skill.title}</h3>
                     </div>
                     
-                    <div className="flex items-center gap-3 mt-6 pt-6 border-t border-slate-100">
-                      <button className="flex-1 flex items-center justify-center gap-2 py-2.5 bg-slate-50 text-slate-600 rounded-xl font-bold hover:bg-slate-100 hover:text-slate-900 transition-colors">
+                    <div className="flex items-center gap-3 mt-6 pt-6 border-t border-slate-100 dark:border-slate-700">
+                      <button className="flex-1 flex items-center justify-center gap-2 py-2.5 bg-slate-50 dark:bg-slate-700/50 text-slate-600 dark:text-slate-300 rounded-xl font-bold hover:bg-slate-100 dark:hover:bg-slate-700 transition-colors">
                         <Edit2 size={16} strokeWidth={2.5} />
                         Edit
                       </button>
                       <button 
                         onClick={() => deleteSkill(skill.id)}
-                        className="w-12 h-11 flex items-center justify-center bg-red-50 text-red-500 rounded-xl hover:bg-red-100 transition-colors"
+                        className="w-12 h-11 flex items-center justify-center bg-red-50 dark:bg-red-500/10 text-red-500 dark:text-red-400 rounded-xl hover:bg-red-100 dark:hover:bg-red-500/20 transition-colors"
                       >
                         <Trash2 size={18} strokeWidth={2.5} />
                       </button>
@@ -245,25 +250,25 @@ export function MySpace() {
                 className="flex flex-col gap-4"
               >
                 {historyLessons.map(lesson => (
-                  <div key={lesson.id} className="bg-white rounded-2xl p-6 border-2 border-slate-100 shadow-sm flex flex-col md:flex-row items-center gap-6 opacity-80 hover:opacity-100 transition-opacity">
-                    <div className="w-16 h-16 rounded-2xl flex items-center justify-center shrink-0 shadow-inner bg-emerald-50 text-emerald-500">
+                  <div key={lesson.id} className="bg-white dark:bg-slate-800 rounded-2xl p-6 border-2 border-slate-100 dark:border-slate-700 shadow-sm dark:shadow-none flex flex-col md:flex-row items-center gap-6 opacity-80 hover:opacity-100 transition-opacity">
+                    <div className="w-16 h-16 rounded-2xl flex items-center justify-center shrink-0 shadow-inner bg-emerald-50 dark:bg-emerald-900/30 text-emerald-500 dark:text-emerald-400">
                       <CheckCircle2 size={28} strokeWidth={2.5} />
                     </div>
                     
                     <div className="flex-1 text-center md:text-left">
                       <div className="flex items-center justify-center md:justify-start gap-2 mb-2">
-                        <span className="px-2.5 py-1 rounded-md text-[10px] font-black uppercase tracking-widest bg-slate-100 text-slate-500">
+                        <span className="px-2.5 py-1 rounded-md text-[10px] font-black uppercase tracking-widest bg-slate-100 dark:bg-slate-700 text-slate-500 dark:text-slate-300">
                           {lesson.type}
                         </span>
-                        <h3 className="text-xl font-bold text-slate-700">{lesson.title}</h3>
+                        <h3 className="text-xl font-bold text-slate-700 dark:text-white">{lesson.title}</h3>
                       </div>
-                      <div className="flex flex-wrap items-center justify-center md:justify-start gap-4 text-sm font-bold text-slate-400">
+                      <div className="flex flex-wrap items-center justify-center md:justify-start gap-4 text-sm font-bold text-slate-400 dark:text-slate-500">
                         <span className="flex items-center gap-1.5"><UserCircle size={16} /> {lesson.partner}</span>
                         <span className="flex items-center gap-1.5"><Clock size={16} /> {lesson.date}</span>
                       </div>
                     </div>
 
-                    <button className="w-full md:w-auto px-5 py-2.5 bg-slate-50 text-slate-600 rounded-xl font-bold flex items-center justify-center gap-2 hover:bg-slate-100 transition-colors">
+                    <button className="w-full md:w-auto px-5 py-2.5 bg-slate-50 dark:bg-slate-700/50 text-slate-600 dark:text-slate-300 rounded-xl font-bold flex items-center justify-center gap-2 hover:bg-slate-100 dark:hover:bg-slate-700 transition-colors">
                       View Details
                     </button>
                   </div>

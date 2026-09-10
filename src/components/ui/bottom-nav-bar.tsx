@@ -17,6 +17,7 @@ import {
 } from "lucide-react";
 
 import { cn } from "@/lib/utils";
+import { useAppContext } from "@/contexts/AppContext";
 
 export type NavItem = {
   label: string;
@@ -33,9 +34,10 @@ const navItems: NavItem[] = [
   { label: "Help", icon: CircleHelp, id: "help" },
 ];
 
-function ProfileDropdown() {
+function ProfileDropdown({ onSettingsClick }: { onSettingsClick: () => void }) {
   const [isOpen, setIsOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
+  const { user } = useAppContext();
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
@@ -51,14 +53,14 @@ function ProfileDropdown() {
     <div className="relative" ref={dropdownRef}>
       <motion.button
         whileTap={{ scale: 0.97 }}
-        className="flex items-center gap-2 p-1.5 pl-2 pr-3 rounded-full transition-colors duration-200 bg-transparent hover:bg-slate-100"
+        className="flex items-center gap-2 p-1.5 pl-2 pr-3 rounded-full transition-colors duration-200 bg-transparent hover:bg-slate-100 dark:hover:bg-slate-800"
         onClick={() => setIsOpen(!isOpen)}
       >
-        <div className="w-10 h-10 rounded-full bg-gradient-to-tr from-blue-600 to-indigo-500 flex items-center justify-center text-white shadow-sm border-[2px] border-white/40">
-          <span className="font-extrabold text-sm tracking-tight">T</span>
+        <div className="w-10 h-10 rounded-full flex items-center justify-center shadow-sm border-[2px] border-white/40 dark:border-slate-700 overflow-hidden">
+          <img src={user.avatarUrl} alt="Profile" className="w-full h-full object-cover" />
         </div>
         <div className="flex flex-col items-start mr-1">
-          <span className="text-sm font-extrabold text-slate-800 leading-tight">Tanish</span>
+          <span className="text-sm font-extrabold text-slate-800 dark:text-white leading-tight">{user.name}</span>
         </div>
         <ChevronDown size={14} className={cn("text-slate-400 transition-transform duration-200", isOpen && "rotate-180")} strokeWidth={3} />
       </motion.button>
@@ -70,25 +72,39 @@ function ProfileDropdown() {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 10, scale: 0.95 }}
             transition={{ type: "spring", stiffness: 400, damping: 30 }}
-            className="absolute right-0 top-full mt-4 w-56 bg-white/90 backdrop-blur-3xl border border-slate-200/50 rounded-2xl shadow-xl p-2 flex flex-col gap-1 origin-top-right"
+            className="absolute right-0 top-full mt-4 w-56 bg-white/90 dark:bg-slate-900/90 backdrop-blur-3xl border border-slate-200/50 dark:border-slate-800 rounded-2xl shadow-xl p-2 flex flex-col gap-1 origin-top-right z-50"
           >
-            <div className="px-3 py-2 border-b border-slate-100/60 mb-1">
-              <p className="text-sm font-bold text-slate-800">Tanish</p>
-              <p className="text-xs text-slate-500 font-medium">tanish@navic.app</p>
+            <div className="px-3 py-2 border-b border-slate-100/60 dark:border-slate-800 mb-1">
+              <p className="text-sm font-bold text-slate-800 dark:text-white flex items-center gap-2">
+                {user.name} 
+                <span className={cn(
+                  "w-2 h-2 rounded-full",
+                  user.status === 'online' ? "bg-emerald-500" :
+                  user.status === 'idle' ? "bg-amber-500" :
+                  user.status === 'dnd' ? "bg-rose-500" : "bg-slate-500"
+                )} />
+              </p>
+              <p className="text-xs text-slate-500 dark:text-slate-400 font-medium">Credits: {user.credits}</p>
             </div>
             
-            <button className="flex items-center gap-3 px-3 py-2.5 text-sm font-semibold text-slate-600 rounded-xl hover:bg-slate-100 hover:text-slate-900 transition-colors w-full text-left">
+            <button 
+              onClick={() => { setIsOpen(false); /* route to myspace */ }}
+              className="flex items-center gap-3 px-3 py-2.5 text-sm font-semibold text-slate-600 dark:text-slate-300 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors w-full text-left"
+            >
               <UserCircle size={18} strokeWidth={2.5} />
               My Profile
             </button>
-            <button className="flex items-center gap-3 px-3 py-2.5 text-sm font-semibold text-slate-600 rounded-xl hover:bg-slate-100 hover:text-slate-900 transition-colors w-full text-left">
+            <button 
+              onClick={() => { setIsOpen(false); onSettingsClick(); }}
+              className="flex items-center gap-3 px-3 py-2.5 text-sm font-semibold text-slate-600 dark:text-slate-300 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors w-full text-left"
+            >
               <Settings size={18} strokeWidth={2.5} />
               Settings
             </button>
             
-            <div className="h-[1px] w-full bg-slate-100/60 my-1" />
+            <div className="h-[1px] w-full bg-slate-100/60 dark:bg-slate-800 my-1" />
             
-            <button className="flex items-center gap-3 px-3 py-2.5 text-sm font-bold text-red-600 rounded-xl hover:bg-red-50 transition-colors w-full text-left">
+            <button className="flex items-center gap-3 px-3 py-2.5 text-sm font-bold text-red-600 dark:text-red-400 rounded-xl hover:bg-red-50 dark:hover:bg-red-500/10 transition-colors w-full text-left">
               <LogOut size={18} strokeWidth={2.5} />
               Log out
             </button>
@@ -197,7 +213,7 @@ export function BottomNavBar({
       <div className="w-[2px] h-8 bg-slate-200 mx-2 rounded-full" />
 
       {/* Custom Profile Dropdown */}
-      <ProfileDropdown />
+      <ProfileDropdown onSettingsClick={() => handleTabClick(4)} />
     </motion.nav>
   );
 }

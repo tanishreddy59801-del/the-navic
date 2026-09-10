@@ -24,6 +24,7 @@ export function AddSkillModal({ isOpen, onClose }: AddSkillModalProps) {
     description: '',
     duration: '',
     classes: '',
+    price: '',
   });
 
   // Handle Close
@@ -196,6 +197,19 @@ export function AddSkillModal({ isOpen, onClose }: AddSkillModalProps) {
                             className="w-full bg-slate-50 border-2 border-slate-200 rounded-xl pl-4 pr-16 py-3 text-slate-800 font-medium focus:outline-none focus:border-blue-500 focus:bg-white transition-colors"
                           />
                           <span className="absolute right-4 top-1/2 -translate-y-1/2 text-slate-400 font-bold text-sm pointer-events-none">sessions</span>
+                        </div>
+                      </div>
+                      <div className="col-span-2">
+                        <label className="block text-sm font-bold text-slate-700 mb-2 uppercase tracking-wider">Credit Price</label>
+                        <div className="relative">
+                          <input 
+                            type="number" 
+                            placeholder="150"
+                            value={formData.price}
+                            onChange={(e) => setFormData({...formData, price: e.target.value})}
+                            className="w-full bg-slate-50 border-2 border-slate-200 rounded-xl pl-4 pr-16 py-3 text-slate-800 font-medium focus:outline-none focus:border-blue-500 focus:bg-white transition-colors"
+                          />
+                          <span className="absolute right-4 top-1/2 -translate-y-1/2 text-slate-400 font-bold text-sm pointer-events-none">credits</span>
                         </div>
                       </div>
                     </div>
