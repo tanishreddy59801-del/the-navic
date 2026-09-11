@@ -151,14 +151,15 @@ export function BottomNavBar({
       role="navigation"
       aria-label="Bottom Navigation"
       className={cn(
-        "bg-white/80 backdrop-blur-2xl border border-slate-200/50 rounded-full flex items-center p-2 shadow-2xl space-x-1 w-fit max-w-[95vw] overflow-x-auto h-[72px] [&::-webkit-scrollbar]:hidden",
+        "bg-white/80 backdrop-blur-2xl border border-slate-200/50 rounded-full flex items-center p-2 shadow-2xl w-fit max-w-[95vw] h-[72px]",
         stickyBottom && "fixed inset-x-0 bottom-8 mx-auto z-20 w-fit",
         className,
       )}
     >
-      {navItems.map((item, idx) => {
-        const Icon = item.icon;
-        const isActive = activeIndex === idx;
+      <div className="flex items-center space-x-1 overflow-x-auto [&::-webkit-scrollbar]:hidden w-fit max-w-[calc(95vw-90px)]">
+        {navItems.map((item, idx) => {
+          const Icon = item.icon;
+          const isActive = activeIndex === idx;
 
         return (
           <motion.button
@@ -209,6 +210,7 @@ export function BottomNavBar({
           </motion.button>
         );
       })}
+      </div>
 
       {/* Vertical Divider */}
       <div className="w-[2px] h-8 bg-slate-200 mx-2 rounded-full shrink-0" />
