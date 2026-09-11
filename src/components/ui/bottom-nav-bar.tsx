@@ -151,7 +151,7 @@ export function BottomNavBar({
       role="navigation"
       aria-label="Bottom Navigation"
       className={cn(
-        "bg-white/80 backdrop-blur-2xl border border-slate-200/50 rounded-full flex items-center p-2 shadow-2xl space-x-1 min-w-[400px] max-w-[95vw] h-[72px]",
+        "bg-white/80 backdrop-blur-2xl border border-slate-200/50 rounded-full flex items-center p-2 shadow-2xl space-x-1 w-fit max-w-[95vw] overflow-x-auto h-[72px] [&::-webkit-scrollbar]:hidden",
         stickyBottom && "fixed inset-x-0 bottom-8 mx-auto z-20 w-fit",
         className,
       )}
@@ -165,7 +165,7 @@ export function BottomNavBar({
             key={item.label}
             whileTap={{ scale: 0.97 }}
             className={cn(
-              "flex items-center gap-0 px-5 py-3 rounded-full transition-colors duration-200 relative h-12 min-w-[56px] min-h-[48px]",
+              "flex items-center gap-0 px-5 py-3 rounded-full transition-colors duration-200 relative h-12 min-w-[56px] min-h-[48px] shrink-0",
               isActive
                 ? "bg-primary/10 text-primary shadow-sm"
                 : "bg-transparent text-slate-500 hover:bg-slate-100",
@@ -211,10 +211,12 @@ export function BottomNavBar({
       })}
 
       {/* Vertical Divider */}
-      <div className="w-[2px] h-8 bg-slate-200 mx-2 rounded-full" />
+      <div className="w-[2px] h-8 bg-slate-200 mx-2 rounded-full shrink-0" />
 
       {/* Custom Profile Dropdown */}
-      <ProfileDropdown onSettingsClick={() => handleTabClick(5)} />
+      <div className="shrink-0">
+        <ProfileDropdown onSettingsClick={() => handleTabClick(5)} />
+      </div>
     </motion.nav>
   );
 }

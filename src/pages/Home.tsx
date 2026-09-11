@@ -17,12 +17,12 @@ export function Home() {
         </div>
 
         <h1 className="relative z-10 max-w-4xl text-center font-bold leading-tight tracking-tight text-slate-800 dark:text-white transition-colors duration-300" style={{ fontFamily: "'Fredoka', 'Nunito', sans-serif" }}>
-          <span className="text-4xl md:text-6xl block mb-2">Empower your journey.</span>
-          <span className="text-4xl md:text-6xl block mb-4">Come together to</span>
-          <div className="h-[7rem] md:h-[13rem] flex items-center justify-center mt-2">
+          <span className="text-3xl md:text-6xl block mb-2">Empower your journey.</span>
+          <span className="text-3xl md:text-6xl block mb-4">Come together to</span>
+          <div className="h-[5rem] md:h-[13rem] flex items-center justify-center mt-2">
             <TypewriterText
               words={["learn.", "grow.", "teach.", "share."]}
-              className="text-primary text-[5.5rem] md:text-[9rem] pr-4 block"
+              className="text-primary text-[3.5rem] md:text-[9rem] pr-2 md:pr-4 block"
             />
           </div>
         </h1>
@@ -32,7 +32,7 @@ export function Home() {
 
       <section className="relative w-full bg-white dark:bg-slate-900 py-40 px-6 overflow-hidden transition-colors duration-300">
         <div className="relative z-10 max-w-6xl mx-auto pt-16">
-          <h2 className="text-5xl md:text-7xl font-black text-center mb-24 text-slate-900 dark:text-white tracking-tight transition-colors duration-300" style={{ fontFamily: "'Fredoka', 'Nunito', sans-serif" }}>
+          <h2 className="text-4xl md:text-7xl font-black text-center mb-16 md:mb-24 text-slate-900 dark:text-white tracking-tight transition-colors duration-300" style={{ fontFamily: "'Fredoka', 'Nunito', sans-serif" }}>
             How <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600 dark:from-blue-400 dark:to-purple-400">Navic</span> Works
           </h2>
 
@@ -73,11 +73,11 @@ export function Home() {
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-blue-500/20 rounded-full blur-[120px] pointer-events-none" />
         
         <div className="relative z-10 flex flex-col items-center text-center">
-          <h2 className="text-6xl md:text-[8rem] font-black tracking-tight text-white leading-[1.1] mb-12 uppercase" style={{ fontFamily: "'Fredoka', 'Nunito', sans-serif" }}>
+          <h2 className="text-5xl md:text-[8rem] font-black tracking-tight text-white leading-[1.1] mb-12 uppercase" style={{ fontFamily: "'Fredoka', 'Nunito', sans-serif" }}>
             Get Started <br />
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-purple-400 to-emerald-400">Now !</span>
           </h2>
-          <button className="px-12 py-6 rounded-full bg-white text-slate-900 font-extrabold text-2xl hover:scale-105 active:scale-95 transition-all duration-200 shadow-[0_0_40px_rgba(255,255,255,0.3)] hover:shadow-[0_0_60px_rgba(255,255,255,0.5)] cursor-pointer">
+          <button className="px-8 py-4 md:px-12 md:py-6 rounded-full bg-white text-slate-900 font-extrabold text-xl md:text-2xl hover:scale-105 active:scale-95 transition-all duration-200 shadow-[0_0_40px_rgba(255,255,255,0.3)] hover:shadow-[0_0_60px_rgba(255,255,255,0.5)] cursor-pointer">
             Join Navic Today
           </button>
         </div>

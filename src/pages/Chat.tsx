@@ -1,11 +1,12 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { Send, Paperclip, Search, MoreVertical, Phone, Video } from 'lucide-react';
+import { Send, Paperclip, Search, MoreVertical, Phone, Video, ChevronLeft } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useAppContext } from '@/contexts/AppContext';
 
 export function Chat() {
   const { user, conversations, sendMessage } = useAppContext();
   const [activeChatId, setActiveChatId] = useState<string | null>(conversations.length > 0 ? conversations[0].id : null);
+  const [isMobileChatOpen, setIsMobileChatOpen] = useState(false);
   const [inputText, setInputText] = useState("");
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
@@ -35,7 +36,7 @@ export function Chat() {
       <div className="max-w-6xl w-full h-[85vh] bg-white/80 dark:bg-slate-800/80 backdrop-blur-2xl rounded-[3rem] border border-white dark:border-slate-700 shadow-2xl shadow-slate-200/50 dark:shadow-none flex overflow-hidden relative z-10">
         
         {/* Sidebar: Conversations List */}
-        <div className="w-full md:w-80 lg:w-96 border-r border-slate-100 dark:border-slate-700/50 flex flex-col shrink-0 h-full">
+        <div className={`w-full md:w-80 lg:w-96 border-r border-slate-100 dark:border-slate-700/50 flex-col shrink-0 h-full ${isMobileChatOpen ? 'hidden md:flex' : 'flex'}`}>
           {/* Header */}
           <div className="p-6 pb-4">
             <h2 className="text-3xl font-black text-slate-800 dark:text-white mb-4" style={{ fontFamily: "'Fredoka', 'Nunito', sans-serif" }}>Messages</h2>
@@ -54,7 +55,7 @@ export function Chat() {
             {conversations.map((conv) => (
               <button 
                 key={conv.id}
-                onClick={() => setActiveChatId(conv.id)}
+                onClick={() => { setActiveChatId(conv.id); setIsMobileChatOpen(true); }}
                 className={`w-full flex items-center gap-4 p-3 rounded-2xl transition-all duration-200 ${
                   activeChatId === conv.id 
                     ? 'bg-blue-50 dark:bg-blue-500/10 shadow-sm' 
@@ -95,11 +96,17 @@ export function Chat() {
 
         {/* Main Chat Window */}
         {activeChat ? (
-          <div className="flex-1 flex flex-col h-full bg-slate-50/50 dark:bg-slate-900/20 hidden md:flex">
+          <div className={`flex-1 flex-col h-full bg-slate-50/50 dark:bg-slate-900/20 ${isMobileChatOpen ? 'flex' : 'hidden md:flex'}`}>
             {/* Chat Header */}
-            <div className="h-20 px-8 flex items-center justify-between border-b border-slate-100 dark:border-slate-700/50 bg-white/50 dark:bg-slate-800/50 backdrop-blur-md">
-              <div className="flex items-center gap-4">
-                <div className="w-12 h-12 rounded-full overflow-hidden border border-slate-200 dark:border-slate-700">
+            <div className="h-20 px-4 md:px-8 flex items-center justify-between border-b border-slate-100 dark:border-slate-700/50 bg-white/50 dark:bg-slate-800/50 backdrop-blur-md">
+              <div className="flex items-center gap-3 md:gap-4">
+                <button 
+                  onClick={() => setIsMobileChatOpen(false)}
+                  className="md:hidden p-2 -ml-2 rounded-full text-slate-500 hover:bg-slate-100 dark:hover:bg-slate-700 transition-colors"
+                >
+                  <ChevronLeft size={24} />
+                </button>
+                <div className="w-10 h-10 md:w-12 md:h-12 rounded-full overflow-hidden border border-slate-200 dark:border-slate-700 shrink-0">
                   <img src={activeChat.partnerAvatarUrl} alt={activeChat.partnerName} className="w-full h-full object-cover" />
                 </div>
                 <div>
