@@ -1,5 +1,5 @@
 import React from 'react';
-import { Twitter, Instagram, Linkedin, Github, Mail, ArrowRight } from 'lucide-react';
+import { ArrowRight, Mail, Globe, MessageSquare, Briefcase, Code } from 'lucide-react';
 import { Logo } from '../Logo';
 import { useAppContext } from '@/contexts/AppContext';
 
@@ -27,16 +27,16 @@ export function Footer() {
             </p>
             <div className="flex items-center gap-4">
               <a href="#" className="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center text-slate-400 hover:bg-blue-600 hover:text-white transition-all shadow-lg hover:-translate-y-1">
-                <Twitter size={18} />
+                <MessageSquare size={18} />
               </a>
               <a href="#" className="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center text-slate-400 hover:bg-pink-600 hover:text-white transition-all shadow-lg hover:-translate-y-1">
-                <Instagram size={18} />
+                <Globe size={18} />
               </a>
               <a href="#" className="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center text-slate-400 hover:bg-blue-700 hover:text-white transition-all shadow-lg hover:-translate-y-1">
-                <Linkedin size={18} />
+                <Briefcase size={18} />
               </a>
               <a href="#" className="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center text-slate-400 hover:bg-slate-700 hover:text-white transition-all shadow-lg hover:-translate-y-1">
-                <Github size={18} />
+                <Code size={18} />
               </a>
             </div>
           </div>

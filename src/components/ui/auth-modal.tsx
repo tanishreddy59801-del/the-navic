@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Mail, Lock, ArrowRight, User as UserIcon, Github } from 'lucide-react';
+import { Mail, Lock, ArrowRight, User as UserIcon, Globe } from 'lucide-react';
 import { Logo } from '../Logo';
 
 interface AuthModalProps {
@@ -133,7 +133,7 @@ export function AuthModal({ isOpen, onClose, onLogin }: AuthModalProps) {
                     type="button"
                     className="w-full bg-slate-50 dark:bg-slate-800 text-slate-800 dark:text-white rounded-2xl py-4 font-bold text-lg flex items-center justify-center gap-3 hover:bg-slate-100 dark:hover:bg-slate-700 border-2 border-slate-200 dark:border-slate-700 transition-all active:scale-[0.98]"
                   >
-                    <Github size={24} />
+                    <Globe size={24} />
                     Continue with GitHub
                   </button>
                 </form>

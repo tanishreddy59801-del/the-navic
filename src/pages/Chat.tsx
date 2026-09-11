@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { Send, Paperclip, Search, MoreVertical, Phone, Video, ChevronLeft } from 'lucide-react';
+import { Send, Paperclip, Search, MoreVertical, Phone, Video, ChevronLeft, Plus } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useAppContext } from '@/contexts/AppContext';
 
@@ -26,7 +26,7 @@ export function Chat() {
   };
 
   return (
-    <div className="w-full h-screen bg-slate-50 dark:bg-slate-900 relative pt-24 pb-24 px-6 flex items-center justify-center transition-colors duration-300 overflow-hidden">
+    <div className="w-full h-screen bg-slate-50 dark:bg-slate-900 relative pt-32 pb-8 px-6 flex items-center justify-center transition-colors duration-300 overflow-hidden">
       {/* Background Blobs */}
       <div className="absolute top-0 left-0 w-full h-full overflow-hidden z-0 pointer-events-none">
         <div className="absolute top-[-5%] left-[-5%] w-[400px] h-[400px] rounded-full bg-blue-400/20 mix-blend-multiply dark:mix-blend-lighten filter blur-[100px]" />
@@ -39,7 +39,17 @@ export function Chat() {
         <div className={`w-full md:w-80 lg:w-96 border-r border-slate-100 dark:border-slate-700/50 flex-col shrink-0 h-full ${isMobileChatOpen ? 'hidden md:flex' : 'flex'}`}>
           {/* Header */}
           <div className="p-6 pb-4">
-            <h2 className="text-3xl font-black text-slate-800 dark:text-white mb-4" style={{ fontFamily: "'Fredoka', 'Nunito', sans-serif" }}>Messages</h2>
+            <div className="flex items-center justify-between mb-4">
+              <h2 className="text-3xl font-black text-slate-800 dark:text-white" style={{ fontFamily: "'Fredoka', 'Nunito', sans-serif" }}>Messages</h2>
+              <button 
+                onClick={() => {
+                  import('sonner').then(({ toast }) => toast.info("New Chat", { description: "User search and new conversation creation coming soon." }));
+                }}
+                className="w-10 h-10 bg-slate-100 dark:bg-slate-800 rounded-full flex items-center justify-center text-slate-600 dark:text-slate-300 hover:bg-blue-100 dark:hover:bg-blue-900/40 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
+              >
+                <Plus size={20} strokeWidth={2.5} />
+              </button>
+            </div>
             <div className="relative">
               <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400" size={18} />
               <input 
