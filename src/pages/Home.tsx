@@ -5,8 +5,18 @@ import { UserSearch, Handshake, Sparkles as SparkleIcon } from "lucide-react"
 export function Home() {
   return (
     <div className="w-full relative">
-      <main className="relative z-10 w-full min-h-screen flex flex-col items-center justify-center px-6 pb-32 pt-24 bg-slate-50 dark:bg-slate-900 transition-colors duration-300">
-        <h1 className="max-w-4xl text-center font-bold leading-tight tracking-tight text-slate-800 dark:text-white transition-colors duration-300" style={{ fontFamily: "'Fredoka', 'Nunito', sans-serif" }}>
+      <main className="relative w-full min-h-screen flex flex-col items-center justify-center px-6 pb-32 pt-24 bg-slate-50 dark:bg-slate-900 transition-colors duration-300 overflow-hidden">
+        {/* Grid Background */}
+        <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:32px_32px] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)] z-0 pointer-events-none transition-opacity duration-300 dark:opacity-50" />
+        
+        {/* Animated Background Orbs */}
+        <div className="absolute top-0 left-0 w-full h-full pointer-events-none z-0">
+          <div className="absolute top-[-10%] left-[10%] w-[400px] h-[400px] md:w-[600px] md:h-[600px] rounded-full bg-blue-400/30 dark:bg-blue-600/20 blur-[100px] mix-blend-multiply dark:mix-blend-lighten animate-blob" />
+          <div className="absolute top-[10%] right-[10%] w-[350px] h-[350px] md:w-[500px] md:h-[500px] rounded-full bg-purple-400/30 dark:bg-purple-600/20 blur-[120px] mix-blend-multiply dark:mix-blend-lighten animate-blob animation-delay-2000" />
+          <div className="absolute bottom-[-10%] left-[30%] w-[450px] h-[450px] md:w-[700px] md:h-[700px] rounded-full bg-emerald-400/20 dark:bg-emerald-600/10 blur-[120px] mix-blend-multiply dark:mix-blend-lighten animate-blob animation-delay-4000" />
+        </div>
+
+        <h1 className="relative z-10 max-w-4xl text-center font-bold leading-tight tracking-tight text-slate-800 dark:text-white transition-colors duration-300" style={{ fontFamily: "'Fredoka', 'Nunito', sans-serif" }}>
           <span className="text-4xl md:text-6xl block mb-2">Empower your journey.</span>
           <span className="text-4xl md:text-6xl block mb-4">Come together to</span>
           <div className="h-[7rem] md:h-[13rem] flex items-center justify-center mt-2">
