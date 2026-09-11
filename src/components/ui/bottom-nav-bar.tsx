@@ -8,7 +8,6 @@ import {
   Sparkles,
   BookOpen,
   Bell,
-  CircleHelp,
   MessageCircle,
   type LucideIcon,
   LogOut,

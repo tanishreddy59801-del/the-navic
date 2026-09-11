@@ -4,7 +4,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { useAppContext } from '@/contexts/AppContext';
 
 export function Chat() {
-  const { user, conversations, sendMessage, activeChatId, setActiveChatId } = useAppContext();
+  const { conversations, sendMessage, activeChatId, setActiveChatId } = useAppContext();
   const [isMobileChatOpen, setIsMobileChatOpen] = useState(false);
   const [inputText, setInputText] = useState("");
   const messagesEndRef = useRef<HTMLDivElement>(null);
@@ -141,7 +141,7 @@ export function Chat() {
             {/* Messages Area */}
             <div className="flex-1 overflow-y-auto p-8 space-y-6">
               <AnimatePresence initial={false}>
-                {activeChat.messages.map((msg, idx) => {
+                {activeChat.messages.map((msg) => {
                   const isMe = msg.senderId === 'me';
                   
                   return (

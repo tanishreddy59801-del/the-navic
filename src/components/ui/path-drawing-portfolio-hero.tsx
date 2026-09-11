@@ -285,11 +285,7 @@ export default function PathDrawingPortfolioHero({
 }: PathDrawingPortfolioHeroProps) {
   const name = brand.trim();
   const reduceMotion = useReducedMotion();
-  const [ready, setReady] = useState(false);
-
-  useEffect(() => {
-    setReady(true);
-  }, []);
+  const [ready] = useState(true);
 
   if (!name) return null;
 

@@ -160,11 +160,34 @@ const AppContext = createContext<AppContextType | undefined>(undefined);
 export function AppProvider({ children }: { children: ReactNode }) {
   const [user, setUser] = useState<User>(defaultUser);
   const [mySkills, setMySkills] = useState<Skill[]>(defaultSkills);
-  const [discoverSkills, setDiscoverSkills] = useState<Skill[]>(defaultDiscoverSkills);
+  const [discoverSkills] = useState<Skill[]>(defaultDiscoverSkills);
   const [conversations, setConversations] = useState<Conversation[]>(defaultConversations);
   const [theme, setTheme] = useState<'light' | 'dark'>('light');
-  const [activeTab, setActiveTab] = useState<number>(0);
+  const [activeTab, setActiveTabInternal] = useState<number>(0);
   const [activeChatId, setActiveChatId] = useState<string | null>(defaultConversations[0].id);
+
+  useEffect(() => {
+    const handleHashChange = () => {
+      const hash = window.location.hash.replace('#', '');
+      const TABS = ['home', 'discover', 'myspace', 'notifications', 'chat', 'settings'];
+      const index = TABS.indexOf(hash);
+      if (index !== -1) {
+        setActiveTabInternal(index);
+      } else if (!hash) {
+        setActiveTabInternal(0);
+      }
+    };
+
+    window.addEventListener('hashchange', handleHashChange);
+    handleHashChange(); // initial check
+    return () => window.removeEventListener('hashchange', handleHashChange);
+  }, []);
+
+  const setActiveTab = (tab: number) => {
+    setActiveTabInternal(tab);
+    const TABS = ['home', 'discover', 'myspace', 'notifications', 'chat', 'settings'];
+    window.location.hash = TABS[tab] || 'home';
+  };
 
   // Apply theme class to body
   useEffect(() => {
@@ -202,8 +225,14 @@ export function AppProvider({ children }: { children: ReactNode }) {
   };
 
   const buySkill = (skill: Skill) => {
+    if (mySkills.some(s => s.id === skill.id || s.title === skill.title)) {
+      toast.error("You already own this skill!");
+      return;
+    }
+    
     if (user.credits >= skill.price) {
       updateCredits(-skill.price);
+      addSkill(skill); // Actually add it to mySkills so it persists!
       toast.success(`Successfully enrolled in ${skill.title}!`, {
         description: `-${skill.price} credits deducted from your balance.`,
       });

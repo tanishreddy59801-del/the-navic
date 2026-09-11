@@ -1,4 +1,3 @@
-import { TypewriterText } from "@/components/ui/typewriter-text"
 import { HeroParallax } from "@/components/ui/hero-parallax"
 import { UserSearch, Handshake, Sparkles as SparkleIcon } from "lucide-react"
 import { useAppContext } from "@/contexts/AppContext"
