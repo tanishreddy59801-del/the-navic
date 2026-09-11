@@ -61,6 +61,8 @@ type AppContextType = {
   sendMessage: (conversationId: string, text: string) => void;
   activeTab: number;
   setActiveTab: (tab: number) => void;
+  activeChatId: string | null;
+  setActiveChatId: (id: string | null) => void;
 };
 
 const defaultUser: User = {
@@ -161,6 +163,7 @@ export function AppProvider({ children }: { children: ReactNode }) {
   const [conversations, setConversations] = useState<Conversation[]>(defaultConversations);
   const [theme, setTheme] = useState<'light' | 'dark'>('light');
   const [activeTab, setActiveTab] = useState<number>(0);
+  const [activeChatId, setActiveChatId] = useState<string | null>(defaultConversations[0].id);
 
   // Apply theme class to body
   useEffect(() => {
@@ -203,6 +206,34 @@ export function AppProvider({ children }: { children: ReactNode }) {
       toast.success(`Successfully enrolled in ${skill.title}!`, {
         description: `-${skill.price} credits deducted from your balance.`,
       });
+
+      // Start a chat with the instructor
+      const instructorName = skill.instructor || 'Unknown Instructor';
+      const instructorAvatar = skill.instructorAvatarUrl || 'https://images.unsplash.com/photo-1599566150163-29194dcaad36?q=80&w=150&auto=format&fit=crop';
+      
+      const newConvId = Math.random().toString(36).substring(2, 9);
+      const initialMessage: Message = {
+        id: Math.random().toString(36).substring(2, 9),
+        senderId: 'me',
+        text: `Hi ${instructorName}, I just enrolled in your "${skill.title}" course!`,
+        timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
+      };
+
+      const newConv: Conversation = {
+        id: newConvId,
+        partnerName: instructorName,
+        partnerAvatarUrl: instructorAvatar,
+        lastMessage: initialMessage.text,
+        lastMessageTime: initialMessage.timestamp,
+        unreadCount: 0,
+        isOnline: true,
+        messages: [initialMessage]
+      };
+
+      setConversations(prev => [newConv, ...prev]);
+      setActiveChatId(newConvId);
+      setActiveTab(4); // Switch to Chat tab
+
     } else {
       toast.error("Not enough credits!", {
         description: `You need ${skill.price - user.credits} more credits to enroll.`,
@@ -258,7 +289,7 @@ export function AppProvider({ children }: { children: ReactNode }) {
     <AppContext.Provider value={{ 
       user, mySkills, discoverSkills, conversations, theme, setTheme, updateUser, 
       addSkill, updateSkill, deleteSkill, updateCredits, buySkill, sendMessage,
-      activeTab, setActiveTab
+      activeTab, setActiveTab, activeChatId, setActiveChatId
     }}>
       {children}
     </AppContext.Provider>

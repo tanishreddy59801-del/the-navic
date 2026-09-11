@@ -58,10 +58,11 @@ function SkeletonCard() {
 }
 
 export function Discover() {
-  const [activeCategory, setActiveCategory] = useState("All");
   const [searchQuery, setSearchQuery] = useState("");
+  const [activeCategory, setActiveCategory] = useState("All");
   const [isLoading, setIsLoading] = useState(true);
-  const { discoverSkills, buySkill } = useAppContext();
+  const [selectedSkill, setSelectedSkill] = useState<any>(null);
+  const { discoverSkills, buySkill, user } = useAppContext();
 
   useEffect(() => {
     const timer = setTimeout(() => setIsLoading(false), 800);
@@ -204,7 +205,7 @@ export function Discover() {
                   </div>
                   
                   <button 
-                    onClick={() => buySkill(skill)}
+                    onClick={() => setSelectedSkill(skill)}
                     className={`px-6 py-3 rounded-2xl font-bold flex items-center gap-2 transition-all hover:scale-105 active:scale-95 text-white
                       ${skill.color === 'blue' ? 'bg-blue-600 shadow-xl shadow-blue-600/30 hover:bg-blue-500' : ''}
                       ${skill.color === 'purple' ? 'bg-purple-600 shadow-xl shadow-purple-600/30 hover:bg-purple-500' : ''}
@@ -222,6 +223,66 @@ export function Discover() {
         )}
       </div>
       <Footer />
+      
+      {/* Confirmation Modal */}
+      <AnimatePresence>
+        {selectedSkill && (
+          <div className="fixed inset-0 z-[100] flex items-center justify-center p-4">
+            <motion.div 
+              initial={{ opacity: 0 }} 
+              animate={{ opacity: 1 }} 
+              exit={{ opacity: 0 }} 
+              onClick={() => setSelectedSkill(null)}
+              className="absolute inset-0 bg-slate-900/60 backdrop-blur-sm"
+            />
+            <motion.div 
+              initial={{ opacity: 0, scale: 0.95, y: 20 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.95, y: 20 }}
+              className="relative w-full max-w-md bg-white dark:bg-slate-900 rounded-[2rem] p-8 border border-slate-200 dark:border-slate-800 shadow-2xl overflow-hidden"
+            >
+              <div className="absolute top-0 left-0 w-full h-32 bg-gradient-to-br from-blue-500/20 to-purple-500/20 dark:from-blue-500/10 dark:to-purple-500/10 pointer-events-none" />
+              
+              <div className="relative z-10">
+                <div className="w-16 h-16 bg-blue-100 dark:bg-blue-900/50 text-blue-600 dark:text-blue-400 rounded-2xl flex items-center justify-center mb-6 shadow-inner mx-auto">
+                  <Coins size={32} strokeWidth={2.5} />
+                </div>
+                
+                <h3 className="text-2xl font-black text-slate-800 dark:text-white mb-2 text-center" style={{ fontFamily: "'Fredoka', 'Nunito', sans-serif" }}>Confirm Enrollment</h3>
+                <p className="text-slate-500 dark:text-slate-400 font-medium text-center mb-8">
+                  You are about to enroll in <span className="text-slate-800 dark:text-white font-bold">{selectedSkill.title}</span>. This will cost <span className="text-blue-600 dark:text-blue-400 font-bold">{selectedSkill.price} credits</span>.
+                </p>
+
+                <div className="bg-slate-50 dark:bg-slate-800/50 rounded-2xl p-4 mb-8 flex items-center justify-between border border-slate-100 dark:border-slate-700">
+                  <span className="text-slate-500 dark:text-slate-400 font-bold text-sm">Your Balance</span>
+                  <div className="flex items-center gap-1.5 font-black text-lg text-slate-800 dark:text-white">
+                    <Coins size={18} className="text-emerald-500" />
+                    <span>{user.credits}</span>
+                  </div>
+                </div>
+
+                <div className="flex gap-3">
+                  <button 
+                    onClick={() => setSelectedSkill(null)}
+                    className="flex-1 py-4 rounded-xl font-bold text-slate-600 dark:text-slate-300 bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors"
+                  >
+                    Cancel
+                  </button>
+                  <button 
+                    onClick={() => {
+                      buySkill(selectedSkill);
+                      setSelectedSkill(null);
+                    }}
+                    className="flex-1 py-4 rounded-xl font-bold text-white bg-blue-600 hover:bg-blue-700 shadow-lg shadow-blue-600/30 transition-all active:scale-95"
+                  >
+                    Confirm
+                  </button>
+                </div>
+              </div>
+            </motion.div>
+          </div>
+        )}
+      </AnimatePresence>
     </div>
   );
 }

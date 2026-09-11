@@ -4,8 +4,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { useAppContext } from '@/contexts/AppContext';
 
 export function Chat() {
-  const { user, conversations, sendMessage } = useAppContext();
-  const [activeChatId, setActiveChatId] = useState<string | null>(conversations.length > 0 ? conversations[0].id : null);
+  const { user, conversations, sendMessage, activeChatId, setActiveChatId } = useAppContext();
   const [isMobileChatOpen, setIsMobileChatOpen] = useState(false);
   const [inputText, setInputText] = useState("");
   const messagesEndRef = useRef<HTMLDivElement>(null);
