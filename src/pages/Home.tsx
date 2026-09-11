@@ -1,21 +1,6 @@
 import { TypewriterText } from "@/components/ui/typewriter-text"
 import DiscoverPassions from '@/components/ui/hero-scroll-animation'
 import { UserSearch, Handshake, Sparkles as SparkleIcon } from "lucide-react"
-import { motion } from "framer-motion"
-
-const marqueeSkills = [
-  "⚡️ Advanced React", "🎸 Acoustic Guitar", "🎨 Oil Painting", "🍳 Sourdough Baking", 
-  "📸 Portrait Photography", "🧘‍♀️ Vinyasa Yoga", "🇪🇸 Conversational Spanish", "💻 Python Data Science",
-  "⚡️ Advanced React", "🎸 Acoustic Guitar", "🎨 Oil Painting", "🍳 Sourdough Baking", 
-  "📸 Portrait Photography", "🧘‍♀️ Vinyasa Yoga", "🇪🇸 Conversational Spanish", "💻 Python Data Science"
-];
-
-const marqueeSkillsReverse = [
-  "🚀 UI/UX Design", "🛹 Skateboarding Basics", "🪴 Indoor Gardening", "🥊 Muay Thai",
-  "🎹 Jazz Piano", "🧶 Knitting", "🇫🇷 French for Beginners", "📊 Excel Mastery",
-  "🚀 UI/UX Design", "🛹 Skateboarding Basics", "🪴 Indoor Gardening", "🥊 Muay Thai",
-  "🎹 Jazz Piano", "🧶 Knitting", "🇫🇷 French for Beginners", "📊 Excel Mastery"
-];
 
 export function Home() {
   return (
@@ -31,30 +16,7 @@ export function Home() {
           <div className="absolute bottom-[-10%] left-[30%] w-[450px] h-[450px] md:w-[700px] md:h-[700px] rounded-full bg-emerald-400/20 dark:bg-emerald-600/20 blur-[120px] mix-blend-multiply dark:mix-blend-lighten animate-blob animation-delay-4000" />
         </div>
 
-        {/* Floating Avatars */}
-        <motion.div 
-          animate={{ y: [0, -15, 0] }} 
-          transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }} 
-          className="absolute top-[20%] left-[15%] md:left-[25%] z-10 w-16 h-16 rounded-full border-[3px] border-white dark:border-slate-800 shadow-xl overflow-hidden hidden sm:block"
-        >
-          <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=150&auto=format&fit=crop" className="w-full h-full object-cover" alt="User" />
-        </motion.div>
-        <motion.div 
-          animate={{ y: [0, 15, 0] }} 
-          transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 1 }} 
-          className="absolute top-[60%] right-[15%] md:right-[20%] z-10 w-20 h-20 rounded-full border-[3px] border-white dark:border-slate-800 shadow-xl overflow-hidden hidden sm:block"
-        >
-          <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?q=80&w=150&auto=format&fit=crop" className="w-full h-full object-cover" alt="User" />
-        </motion.div>
-        <motion.div 
-          animate={{ y: [0, -10, 0] }} 
-          transition={{ duration: 6, repeat: Infinity, ease: "easeInOut", delay: 2 }} 
-          className="absolute bottom-[25%] left-[20%] md:left-[30%] z-10 w-12 h-12 rounded-full border-[3px] border-white dark:border-slate-800 shadow-xl overflow-hidden hidden sm:block"
-        >
-          <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?q=80&w=150&auto=format&fit=crop" className="w-full h-full object-cover" alt="User" />
-        </motion.div>
-
-        <h1 className="relative z-10 max-w-4xl text-center font-bold leading-tight tracking-tight text-slate-800 dark:text-white transition-colors duration-300 mb-12" style={{ fontFamily: "'Fredoka', 'Nunito', sans-serif" }}>
+        <h1 className="relative z-10 max-w-4xl text-center font-bold leading-tight tracking-tight text-slate-800 dark:text-white transition-colors duration-300" style={{ fontFamily: "'Fredoka', 'Nunito', sans-serif" }}>
           <span className="text-3xl md:text-6xl block mb-2">Empower your journey.</span>
           <span className="text-3xl md:text-6xl block mb-4">Come together to</span>
           <div className="h-[5rem] md:h-[13rem] flex items-center justify-center mt-2 relative">
@@ -64,24 +26,6 @@ export function Home() {
             />
           </div>
         </h1>
-
-        {/* Infinite Marquee Loop */}
-        <div className="relative w-[150vw] ml-[-25vw] rotate-[-2deg] mt-8 flex flex-col gap-4 z-20">
-          <div className="flex w-[200%] animate-marquee">
-            {marqueeSkills.map((skill, idx) => (
-              <div key={`m1-${idx}`} className="mx-2 px-6 py-3 rounded-full bg-white/80 dark:bg-slate-800/80 backdrop-blur-xl border border-slate-200/50 dark:border-slate-700 shadow-lg text-slate-800 dark:text-slate-200 font-bold text-lg whitespace-nowrap">
-                {skill}
-              </div>
-            ))}
-          </div>
-          <div className="flex w-[200%] animate-marquee-reverse">
-            {marqueeSkillsReverse.map((skill, idx) => (
-              <div key={`m2-${idx}`} className="mx-2 px-6 py-3 rounded-full bg-white/80 dark:bg-slate-800/80 backdrop-blur-xl border border-slate-200/50 dark:border-slate-700 shadow-lg text-slate-800 dark:text-slate-200 font-bold text-lg whitespace-nowrap">
-                {skill}
-              </div>
-            ))}
-          </div>
-        </div>
       </main>
 
       <DiscoverPassions />
