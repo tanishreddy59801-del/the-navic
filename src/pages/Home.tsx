@@ -1,31 +1,87 @@
 import { TypewriterText } from "@/components/ui/typewriter-text"
 import DiscoverPassions from '@/components/ui/hero-scroll-animation'
 import { UserSearch, Handshake, Sparkles as SparkleIcon } from "lucide-react"
+import { motion } from "framer-motion"
+
+const marqueeSkills = [
+  "⚡️ Advanced React", "🎸 Acoustic Guitar", "🎨 Oil Painting", "🍳 Sourdough Baking", 
+  "📸 Portrait Photography", "🧘‍♀️ Vinyasa Yoga", "🇪🇸 Conversational Spanish", "💻 Python Data Science",
+  "⚡️ Advanced React", "🎸 Acoustic Guitar", "🎨 Oil Painting", "🍳 Sourdough Baking", 
+  "📸 Portrait Photography", "🧘‍♀️ Vinyasa Yoga", "🇪🇸 Conversational Spanish", "💻 Python Data Science"
+];
+
+const marqueeSkillsReverse = [
+  "🚀 UI/UX Design", "🛹 Skateboarding Basics", "🪴 Indoor Gardening", "🥊 Muay Thai",
+  "🎹 Jazz Piano", "🧶 Knitting", "🇫🇷 French for Beginners", "📊 Excel Mastery",
+  "🚀 UI/UX Design", "🛹 Skateboarding Basics", "🪴 Indoor Gardening", "🥊 Muay Thai",
+  "🎹 Jazz Piano", "🧶 Knitting", "🇫🇷 French for Beginners", "📊 Excel Mastery"
+];
 
 export function Home() {
   return (
     <div className="w-full relative">
-      <main className="relative w-full min-h-screen flex flex-col items-center justify-center px-6 pb-32 pt-24 bg-slate-50 dark:bg-slate-900 transition-colors duration-300 overflow-hidden">
+      <main className="relative w-full min-h-screen flex flex-col items-center justify-center px-6 pb-20 pt-24 bg-slate-50 dark:bg-slate-900 transition-colors duration-300 overflow-hidden">
         {/* Grid Background */}
         <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:32px_32px] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)] z-0 pointer-events-none transition-opacity duration-300 dark:opacity-50" />
         
         {/* Animated Background Orbs */}
         <div className="absolute top-0 left-0 w-full h-full pointer-events-none z-0">
-          <div className="absolute top-[-10%] left-[10%] w-[400px] h-[400px] md:w-[600px] md:h-[600px] rounded-full bg-blue-400/30 dark:bg-blue-600/20 blur-[100px] mix-blend-multiply dark:mix-blend-lighten animate-blob" />
-          <div className="absolute top-[10%] right-[10%] w-[350px] h-[350px] md:w-[500px] md:h-[500px] rounded-full bg-purple-400/30 dark:bg-purple-600/20 blur-[120px] mix-blend-multiply dark:mix-blend-lighten animate-blob animation-delay-2000" />
-          <div className="absolute bottom-[-10%] left-[30%] w-[450px] h-[450px] md:w-[700px] md:h-[700px] rounded-full bg-emerald-400/20 dark:bg-emerald-600/10 blur-[120px] mix-blend-multiply dark:mix-blend-lighten animate-blob animation-delay-4000" />
+          <div className="absolute top-[-10%] left-[10%] w-[400px] h-[400px] md:w-[600px] md:h-[600px] rounded-full bg-blue-500/30 dark:bg-blue-600/30 blur-[100px] mix-blend-multiply dark:mix-blend-lighten animate-blob" />
+          <div className="absolute top-[10%] right-[10%] w-[350px] h-[350px] md:w-[500px] md:h-[500px] rounded-full bg-purple-500/30 dark:bg-purple-600/30 blur-[120px] mix-blend-multiply dark:mix-blend-lighten animate-blob animation-delay-2000" />
+          <div className="absolute bottom-[-10%] left-[30%] w-[450px] h-[450px] md:w-[700px] md:h-[700px] rounded-full bg-emerald-400/20 dark:bg-emerald-600/20 blur-[120px] mix-blend-multiply dark:mix-blend-lighten animate-blob animation-delay-4000" />
         </div>
 
-        <h1 className="relative z-10 max-w-4xl text-center font-bold leading-tight tracking-tight text-slate-800 dark:text-white transition-colors duration-300" style={{ fontFamily: "'Fredoka', 'Nunito', sans-serif" }}>
+        {/* Floating Avatars */}
+        <motion.div 
+          animate={{ y: [0, -15, 0] }} 
+          transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }} 
+          className="absolute top-[20%] left-[15%] md:left-[25%] z-10 w-16 h-16 rounded-full border-[3px] border-white dark:border-slate-800 shadow-xl overflow-hidden hidden sm:block"
+        >
+          <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=150&auto=format&fit=crop" className="w-full h-full object-cover" alt="User" />
+        </motion.div>
+        <motion.div 
+          animate={{ y: [0, 15, 0] }} 
+          transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 1 }} 
+          className="absolute top-[60%] right-[15%] md:right-[20%] z-10 w-20 h-20 rounded-full border-[3px] border-white dark:border-slate-800 shadow-xl overflow-hidden hidden sm:block"
+        >
+          <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?q=80&w=150&auto=format&fit=crop" className="w-full h-full object-cover" alt="User" />
+        </motion.div>
+        <motion.div 
+          animate={{ y: [0, -10, 0] }} 
+          transition={{ duration: 6, repeat: Infinity, ease: "easeInOut", delay: 2 }} 
+          className="absolute bottom-[25%] left-[20%] md:left-[30%] z-10 w-12 h-12 rounded-full border-[3px] border-white dark:border-slate-800 shadow-xl overflow-hidden hidden sm:block"
+        >
+          <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?q=80&w=150&auto=format&fit=crop" className="w-full h-full object-cover" alt="User" />
+        </motion.div>
+
+        <h1 className="relative z-10 max-w-4xl text-center font-bold leading-tight tracking-tight text-slate-800 dark:text-white transition-colors duration-300 mb-12" style={{ fontFamily: "'Fredoka', 'Nunito', sans-serif" }}>
           <span className="text-3xl md:text-6xl block mb-2">Empower your journey.</span>
           <span className="text-3xl md:text-6xl block mb-4">Come together to</span>
-          <div className="h-[5rem] md:h-[13rem] flex items-center justify-center mt-2">
+          <div className="h-[5rem] md:h-[13rem] flex items-center justify-center mt-2 relative">
             <TypewriterText
               words={["learn.", "grow.", "teach.", "share."]}
-              className="text-primary text-[3.5rem] md:text-[9rem] pr-2 md:pr-4 block"
+              className="text-primary text-[3.5rem] md:text-[9rem] pr-2 md:pr-4 block drop-shadow-sm"
             />
           </div>
         </h1>
+
+        {/* Infinite Marquee Loop */}
+        <div className="relative w-[150vw] ml-[-25vw] rotate-[-2deg] mt-8 flex flex-col gap-4 z-20">
+          <div className="flex w-[200%] animate-marquee">
+            {marqueeSkills.map((skill, idx) => (
+              <div key={`m1-${idx}`} className="mx-2 px-6 py-3 rounded-full bg-white/80 dark:bg-slate-800/80 backdrop-blur-xl border border-slate-200/50 dark:border-slate-700 shadow-lg text-slate-800 dark:text-slate-200 font-bold text-lg whitespace-nowrap">
+                {skill}
+              </div>
+            ))}
+          </div>
+          <div className="flex w-[200%] animate-marquee-reverse">
+            {marqueeSkillsReverse.map((skill, idx) => (
+              <div key={`m2-${idx}`} className="mx-2 px-6 py-3 rounded-full bg-white/80 dark:bg-slate-800/80 backdrop-blur-xl border border-slate-200/50 dark:border-slate-700 shadow-lg text-slate-800 dark:text-slate-200 font-bold text-lg whitespace-nowrap">
+                {skill}
+              </div>
+            ))}
+          </div>
+        </div>
       </main>
 
       <DiscoverPassions />
@@ -69,6 +125,7 @@ export function Home() {
           </div>
         </div>
       </section>
+      
       <section className="w-full min-h-[70vh] bg-slate-900 flex flex-col items-center justify-center px-6 py-32 relative overflow-hidden">
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-blue-500/20 rounded-full blur-[120px] pointer-events-none" />
         
