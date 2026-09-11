@@ -3,9 +3,14 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Search, ArrowRight, X } from 'lucide-react';
 import { cn } from "@/lib/utils";
 
-export function AnimatedSearchBar({ className }: { className?: string }) {
+interface AnimatedSearchBarProps {
+  className?: string;
+  value: string;
+  onChange: (val: string) => void;
+}
+
+export function AnimatedSearchBar({ className, value, onChange }: AnimatedSearchBarProps) {
   const [isFocused, setIsFocused] = useState(false);
-  const [value, setValue] = useState('');
   const inputRef = useRef<HTMLInputElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
 
@@ -76,7 +81,7 @@ export function AnimatedSearchBar({ className }: { className?: string }) {
           ref={inputRef}
           type="text"
           value={value}
-          onChange={(e) => setValue(e.target.value)}
+          onChange={(e) => onChange(e.target.value)}
           onFocus={() => setIsFocused(true)}
           placeholder="What do you want to learn today?"
           className="w-full h-full bg-transparent outline-none text-lg font-bold text-slate-800 placeholder:text-slate-400 pl-16 pr-16"
@@ -98,7 +103,7 @@ export function AnimatedSearchBar({ className }: { className?: string }) {
           {value.length > 0 && (
             <button
               onClick={() => {
-                setValue('');
+                onChange('');
                 inputRef.current?.focus();
               }}
               className="absolute right-16 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full flex items-center justify-center text-slate-400 hover:bg-slate-100 hover:text-slate-600 transition-all z-20"
