@@ -3,7 +3,8 @@ import { Clock, ArrowRight, Coins, Code, Palette, Music, Globe, ChefHat, Dumbbel
 import { motion, AnimatePresence } from 'framer-motion';
 import { AnimatedSearchBar } from '@/components/ui/animated-search-bar';
 import { useAppContext } from '@/contexts/AppContext';
-import { Footer } from '@/components/ui/footer';
+import { CinematicFooter } from '@/components/ui/motion-footer';
+import { Button } from '@/components/ui/great-ui-button';
 
 const categories = [
   { name: "All", icon: <LayoutGrid size={16} /> },
@@ -77,7 +78,8 @@ export function Discover() {
   });
 
   return (
-    <div className="w-full min-h-screen bg-slate-50 dark:bg-slate-900 relative pt-32 pb-24 px-6 transition-colors duration-300 overflow-hidden">
+    <div className="w-full relative">
+      <main className="w-full min-h-screen bg-slate-50 dark:bg-slate-900 relative pt-32 pb-40 px-6 transition-colors duration-300 overflow-hidden">
       {/* Grid & Blob Background */}
       <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:32px_32px] [mask-image:radial-gradient(ellipse_80%_60%_at_50%_0%,#000_70%,transparent_100%)] z-0 pointer-events-none transition-opacity duration-300 dark:opacity-40" />
       <div className="absolute top-0 left-0 w-full h-full overflow-hidden z-0 pointer-events-none">
@@ -86,12 +88,19 @@ export function Discover() {
       </div>
 
       <div className="max-w-6xl mx-auto relative z-10">
+        {/* Credits Display */}
+        <div className="fixed top-6 right-6 md:top-8 md:right-8 z-50 flex items-center gap-2 bg-white/80 dark:bg-slate-800/80 backdrop-blur-2xl px-4 py-2.5 rounded-full shadow-lg border border-slate-200/50 dark:border-slate-700/50 hover:scale-105 transition-all cursor-default">
+          <div className="w-7 h-7 rounded-full bg-emerald-100 dark:bg-emerald-900/40 flex items-center justify-center text-emerald-600 dark:text-emerald-400 shadow-inner">
+            <Coins size={16} strokeWidth={3} />
+          </div>
+          <span className="font-extrabold text-slate-800 dark:text-white text-lg tracking-tight">{user.credits}</span>
+        </div>
+
         {/* Header & Search */}
         <div className="flex flex-col items-center text-center mb-16">
-          <h1 className="text-5xl md:text-7xl font-black text-slate-800 dark:text-white mb-6 tracking-tight transition-colors duration-300" style={{ fontFamily: "'Fredoka', 'Nunito', sans-serif" }}>
+          <h1 className="text-5xl md:text-7xl font-black text-slate-800 dark:text-white mb-8 tracking-tight transition-colors duration-300" style={{ fontFamily: "'Fredoka', 'Nunito', sans-serif" }}>
             Discover <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600 dark:from-blue-400 dark:to-indigo-400">Skills</span>
           </h1>
-          <p className="text-xl text-slate-500 dark:text-slate-400 mb-10 max-w-2xl font-medium transition-colors duration-300">Find the perfect match. Learn something new and teach what you love.</p>
           
           <AnimatedSearchBar value={searchQuery} onChange={setSearchQuery} />
         </div>
@@ -99,20 +108,16 @@ export function Discover() {
         {/* Categories */}
         <div className="flex flex-wrap items-center justify-center gap-3 mb-16">
           {categories.map((cat) => (
-            <button
+            <Button
               key={cat.name}
               onClick={() => setActiveCategory(cat.name)}
-              className={`px-6 py-3 rounded-full font-bold text-sm flex items-center gap-2 transition-all duration-300 ${
-                activeCategory === cat.name
-                  ? "bg-slate-900 dark:bg-white text-white dark:text-slate-900 shadow-xl shadow-slate-900/20 dark:shadow-white/10 scale-105 ring-2 ring-offset-2 ring-offset-slate-50 dark:ring-offset-slate-900 ring-slate-900 dark:ring-white"
-                  : "bg-white/80 dark:bg-slate-800/80 backdrop-blur-md text-slate-600 dark:text-slate-300 border-2 border-slate-200/50 dark:border-slate-700/50 hover:bg-white dark:hover:bg-slate-700 hover:border-slate-300 dark:hover:border-slate-600 hover:shadow-md hover:-translate-y-0.5"
-              }`}
+              variant={activeCategory === cat.name ? "primary" : "outline"}
+              size="md"
+              leftIcon={<span className={activeCategory === cat.name ? "text-white dark:text-black" : "text-slate-400 dark:text-slate-500"}>{cat.icon}</span>}
+              className="rounded-full shadow-sm"
             >
-              <span className={activeCategory === cat.name ? "text-white dark:text-slate-900" : "text-slate-400 dark:text-slate-500"}>
-                {cat.icon}
-              </span>
               {cat.name}
-            </button>
+            </Button>
           ))}
         </div>
 
@@ -222,7 +227,8 @@ export function Discover() {
           </motion.div>
         )}
       </div>
-      <Footer />
+      </main>
+      <CinematicFooter />
       
       {/* Confirmation Modal */}
       <AnimatePresence>

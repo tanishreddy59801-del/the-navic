@@ -1,39 +1,110 @@
 import { TypewriterText } from "@/components/ui/typewriter-text"
-import DiscoverPassions from '@/components/ui/hero-scroll-animation'
+import { HeroParallax } from "@/components/ui/hero-parallax"
 import { UserSearch, Handshake, Sparkles as SparkleIcon } from "lucide-react"
 import { useAppContext } from "@/contexts/AppContext"
-import { Footer } from "@/components/ui/footer"
+import { CinematicFooter } from "@/components/ui/motion-footer"
+import { UnderlineHero } from "@/components/ui/underline-hero"
+
+const products = [
+  {
+    title: "Web Development",
+    link: "#",
+    thumbnail: "https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?q=80&w=600&auto=format&fit=crop",
+  },
+  {
+    title: "Graphic Design",
+    link: "#",
+    thumbnail: "https://images.unsplash.com/photo-1513258496099-48168024aec0?q=80&w=600&auto=format&fit=crop",
+  },
+  {
+    title: "Language Exchange",
+    link: "#",
+    thumbnail: "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?q=80&w=600&auto=format&fit=crop",
+  },
+  {
+    title: "Marketing Strategy",
+    link: "#",
+    thumbnail: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?q=80&w=600&auto=format&fit=crop",
+  },
+  {
+    title: "Creative Writing",
+    link: "#",
+    thumbnail: "https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?q=80&w=600&auto=format&fit=crop",
+  },
+  {
+    title: "Photography",
+    link: "#",
+    thumbnail: "https://images.unsplash.com/photo-1524178232363-1fb2b075b655?q=80&w=600&auto=format&fit=crop",
+  },
+  {
+    title: "Data Science",
+    link: "#",
+    thumbnail: "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?q=80&w=600&auto=format&fit=crop",
+  },
+  {
+    title: "Public Speaking",
+    link: "#",
+    thumbnail: "https://images.unsplash.com/photo-1552664730-d307ca884978?q=80&w=600&auto=format&fit=crop",
+  },
+  {
+    title: "Music Production",
+    link: "#",
+    thumbnail: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=600&auto=format&fit=crop",
+  },
+  {
+    title: "Business Planning",
+    link: "#",
+    thumbnail: "https://images.unsplash.com/photo-1543269865-cbf427effbad?q=80&w=600&auto=format&fit=crop",
+  },
+  {
+    title: "UI/UX Design",
+    link: "#",
+    thumbnail: "https://images.unsplash.com/photo-1497032205916-ac775f0649ae?q=80&w=600&auto=format&fit=crop",
+  },
+  {
+    title: "Fitness Coaching",
+    link: "#",
+    thumbnail: "https://images.unsplash.com/photo-1523240795612-9a054b0db644?q=80&w=600&auto=format&fit=crop",
+  },
+  {
+    title: "Software Engineering",
+    link: "#",
+    thumbnail: "https://images.unsplash.com/photo-1488190211105-8b0e65b80b4e?q=80&w=600&auto=format&fit=crop",
+  },
+  {
+    title: "Study Methods",
+    link: "#",
+    thumbnail: "https://images.unsplash.com/photo-1434030216411-0b793f4b4173?q=80&w=600&auto=format&fit=crop",
+  },
+  {
+    title: "Career Mentoring",
+    link: "#",
+    thumbnail: "https://images.unsplash.com/photo-1503676260728-1c00da094a0b?q=80&w=600&auto=format&fit=crop",
+  },
+];
 
 export function Home() {
   const { setActiveTab } = useAppContext();
   return (
     <div className="w-full relative">
-      <main className="relative w-full min-h-screen flex flex-col items-center justify-center px-6 pb-20 pt-24 bg-slate-50 dark:bg-slate-900 transition-colors duration-300 overflow-hidden">
+      <main className="w-full min-h-screen bg-slate-50 dark:bg-slate-900 relative transition-colors duration-300 overflow-hidden">
         {/* Grid Background */}
-        <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:32px_32px] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)] z-0 pointer-events-none transition-opacity duration-300 dark:opacity-50" />
-
-        {/* Animated Background Orbs */}
-        <div className="absolute top-0 left-0 w-full h-full pointer-events-none z-0">
-          <div className="absolute top-[-10%] left-[10%] w-[400px] h-[400px] md:w-[600px] md:h-[600px] rounded-full bg-blue-500/30 dark:bg-blue-600/30 blur-[100px] mix-blend-multiply dark:mix-blend-lighten animate-blob" />
-          <div className="absolute top-[10%] right-[10%] w-[350px] h-[350px] md:w-[500px] md:h-[500px] rounded-full bg-purple-500/30 dark:bg-purple-600/30 blur-[120px] mix-blend-multiply dark:mix-blend-lighten animate-blob animation-delay-2000" />
-          <div className="absolute bottom-[-10%] left-[30%] w-[450px] h-[450px] md:w-[700px] md:h-[700px] rounded-full bg-emerald-400/20 dark:bg-emerald-600/20 blur-[120px] mix-blend-multiply dark:mix-blend-lighten animate-blob animation-delay-4000" />
+        <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:32px_32px] [mask-image:radial-gradient(ellipse_80%_60%_at_50%_0%,#000_70%,transparent_100%)] z-0 pointer-events-none transition-opacity duration-300 dark:opacity-40" />
+        
+        {/* Glow Effects */}
+        <div className="absolute top-0 left-0 w-full h-full overflow-hidden z-0 pointer-events-none">
+          <div className="absolute top-[-10%] left-[-10%] w-[500px] h-[500px] rounded-full bg-blue-400/20 dark:bg-blue-600/10 mix-blend-multiply dark:mix-blend-lighten filter blur-[120px] animate-blob transition-colors duration-300" />
+          <div className="absolute top-[-10%] right-[-10%] w-[500px] h-[500px] rounded-full bg-purple-400/20 dark:bg-purple-600/10 mix-blend-multiply dark:mix-blend-lighten filter blur-[120px] animate-blob animation-delay-2000 transition-colors duration-300" />
+          <div className="absolute bottom-[-20%] left-[20%] w-[600px] h-[600px] rounded-full bg-pink-400/20 dark:bg-pink-600/10 mix-blend-multiply dark:mix-blend-lighten filter blur-[120px] animate-blob animation-delay-4000 transition-colors duration-300" />
         </div>
 
-        <h1 className="relative z-10 max-w-4xl text-center font-bold leading-tight tracking-tight text-slate-800 dark:text-white transition-colors duration-300" style={{ fontFamily: "'Fredoka', 'Nunito', sans-serif" }}>
-          <span className="text-3xl md:text-6xl block mb-2">Empower your journey.</span>
-          <span className="text-3xl md:text-6xl block mb-4">Come together to</span>
-          <div className="h-[5rem] md:h-[13rem] flex items-center justify-center mt-2 relative">
-            <TypewriterText
-              words={["learn.", "grow.", "teach.", "share."]}
-              className="text-primary text-[3.5rem] md:text-[9rem] pr-2 md:pr-4 block drop-shadow-sm"
-            />
-          </div>
-        </h1>
+        {/* Hero Section */}
+        <UnderlineHero />
       </main>
 
-      <DiscoverPassions />
+      <HeroParallax products={products} />
 
-      <section className="relative w-full bg-white dark:bg-slate-900 py-40 px-6 overflow-hidden transition-colors duration-300">
+      <section className="relative w-full bg-white dark:bg-slate-900 py-16 pt-8 px-6 overflow-hidden transition-colors duration-300">
         <div className="relative z-10 max-w-6xl mx-auto pt-16">
           <h2 className="text-4xl md:text-7xl font-black text-center mb-16 md:mb-24 text-slate-900 dark:text-white tracking-tight transition-colors duration-300" style={{ fontFamily: "'Fredoka', 'Nunito', sans-serif" }}>
             How <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600 dark:from-blue-400 dark:to-purple-400">Navic</span> Works
@@ -87,7 +158,7 @@ export function Home() {
         </div>
       </section>
 
-      <Footer />
+      <CinematicFooter />
     </div>
   )
 }

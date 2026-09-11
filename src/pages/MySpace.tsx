@@ -3,6 +3,7 @@ import { Calendar, CheckCircle2, Clock, PlayCircle, Video, UserCircle, Coins, Pl
 import { motion, AnimatePresence } from 'framer-motion';
 import { AddSkillModal } from '@/components/ui/add-skill-modal';
 import { useAppContext } from '@/contexts/AppContext';
+import { Button } from '@/components/ui/great-ui-button';
 
 const upcomingLessons = [
   {
@@ -122,34 +123,31 @@ export function MySpace() {
         </div>
 
         {/* Tabs */}
-        <div className="flex items-center gap-4 mb-8 border-b-2 border-slate-100 dark:border-slate-800 pb-px transition-colors duration-300">
-          <button 
+        <div className="flex flex-wrap items-center gap-4 mb-8">
+          <Button 
             onClick={() => setActiveTab('upcoming')}
-            className={`pb-4 text-xl font-bold transition-all relative ${activeTab === 'upcoming' ? 'text-slate-900 dark:text-white' : 'text-slate-400 dark:text-slate-500 hover:text-slate-600 dark:hover:text-slate-300'}`}
+            variant={activeTab === 'upcoming' ? 'primary' : 'secondary'}
+            size="lg"
+            className="rounded-2xl shadow-sm"
           >
             My Schedule
-            {activeTab === 'upcoming' && (
-              <motion.div layoutId="activeTab" className="absolute bottom-[-2px] left-0 right-0 h-1 bg-slate-900 dark:bg-white rounded-t-full" />
-            )}
-          </button>
-          <button 
+          </Button>
+          <Button 
             onClick={() => setActiveTab('skills')}
-            className={`pb-4 text-xl font-bold transition-all relative ${activeTab === 'skills' ? 'text-slate-900 dark:text-white' : 'text-slate-400 dark:text-slate-500 hover:text-slate-600 dark:hover:text-slate-300'}`}
+            variant={activeTab === 'skills' ? 'primary' : 'secondary'}
+            size="lg"
+            className="rounded-2xl shadow-sm"
           >
             My Skills
-            {activeTab === 'skills' && (
-              <motion.div layoutId="activeTab" className="absolute bottom-[-2px] left-0 right-0 h-1 bg-slate-900 dark:bg-white rounded-t-full" />
-            )}
-          </button>
-          <button 
+          </Button>
+          <Button 
             onClick={() => setActiveTab('history')}
-            className={`pb-4 text-xl font-bold transition-all relative ${activeTab === 'history' ? 'text-slate-900 dark:text-white' : 'text-slate-400 dark:text-slate-500 hover:text-slate-600 dark:hover:text-slate-300'}`}
+            variant={activeTab === 'history' ? 'primary' : 'secondary'}
+            size="lg"
+            className="rounded-2xl shadow-sm"
           >
             History & Courses
-            {activeTab === 'history' && (
-              <motion.div layoutId="activeTab" className="absolute bottom-[-2px] left-0 right-0 h-1 bg-slate-900 dark:bg-white rounded-t-full" />
-            )}
-          </button>
+          </Button>
         </div>
 
         {/* Tab Content */}
