@@ -180,7 +180,12 @@ export function MySpace() {
                       </div>
                     </div>
 
-                    <button className="w-full md:w-auto px-6 py-3 bg-slate-900 dark:bg-white text-white dark:text-slate-900 rounded-xl font-bold flex items-center justify-center gap-2 hover:bg-slate-800 dark:hover:bg-slate-100 transition-colors shadow-xl shadow-slate-900/20 dark:shadow-none">
+                    <button 
+                      onClick={() => {
+                        import('sonner').then(({ toast }) => toast.info("Coming Soon", { description: "Video calling will be available in the next update!" }));
+                      }}
+                      className="w-full md:w-auto px-6 py-3 bg-slate-900 dark:bg-white text-white dark:text-slate-900 rounded-xl font-bold flex items-center justify-center gap-2 hover:bg-slate-800 dark:hover:bg-slate-100 transition-colors shadow-xl shadow-slate-900/20 dark:shadow-none"
+                    >
                       <Video size={18} strokeWidth={2.5} />
                       Join Call
                     </button>
@@ -236,7 +241,12 @@ export function MySpace() {
                     </div>
                     
                     <div className="flex items-center gap-3 mt-6 pt-6 border-t border-slate-100 dark:border-slate-700/50 relative z-10">
-                      <button className="flex-1 flex items-center justify-center gap-2 py-3 bg-slate-50 dark:bg-slate-700/50 text-slate-600 dark:text-slate-300 rounded-xl font-bold hover:bg-slate-100 dark:hover:bg-slate-600 transition-colors">
+                      <button 
+                        onClick={() => {
+                          import('sonner').then(({ toast }) => toast.info("Coming Soon", { description: "Skill editing will be available soon." }));
+                        }}
+                        className="flex-1 flex items-center justify-center gap-2 py-3 bg-slate-50 dark:bg-slate-700/50 text-slate-600 dark:text-slate-300 rounded-xl font-bold hover:bg-slate-100 dark:hover:bg-slate-600 transition-colors"
+                      >
                         <Edit2 size={18} strokeWidth={2.5} />
                         Edit
                       </button>
@@ -280,7 +290,12 @@ export function MySpace() {
                       </div>
                     </div>
 
-                    <button className="w-full md:w-auto px-5 py-2.5 bg-slate-50 dark:bg-slate-700/50 text-slate-600 dark:text-slate-300 rounded-xl font-bold flex items-center justify-center gap-2 hover:bg-slate-100 dark:hover:bg-slate-700 transition-colors">
+                    <button 
+                      onClick={() => {
+                        import('sonner').then(({ toast }) => toast.info("Coming Soon", { description: "Detailed history view is under construction." }));
+                      }}
+                      className="w-full md:w-auto px-5 py-2.5 bg-slate-50 dark:bg-slate-700/50 text-slate-600 dark:text-slate-300 rounded-xl font-bold flex items-center justify-center gap-2 hover:bg-slate-100 dark:hover:bg-slate-700 transition-colors"
+                    >
                       View Details
                     </button>
                   </div>

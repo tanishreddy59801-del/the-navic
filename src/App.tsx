@@ -8,8 +8,10 @@ import { MySpace } from '@/pages/MySpace'
 import { Chat } from '@/pages/Chat'
 import { Settings } from './pages/Settings'
 
+import { useAppContext } from './contexts/AppContext'
+
 function App() {
-  const [activeTab, setActiveTab] = useState(0);
+  const { activeTab, setActiveTab } = useAppContext();
 
   const renderContent = () => {
     switch (activeTab) {

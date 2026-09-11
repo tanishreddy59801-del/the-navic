@@ -59,6 +59,8 @@ type AppContextType = {
   updateCredits: (amount: number) => void;
   buySkill: (skill: Skill) => void;
   sendMessage: (conversationId: string, text: string) => void;
+  activeTab: number;
+  setActiveTab: (tab: number) => void;
 };
 
 const defaultUser: User = {
@@ -158,6 +160,7 @@ export function AppProvider({ children }: { children: ReactNode }) {
   const [discoverSkills, setDiscoverSkills] = useState<Skill[]>(defaultDiscoverSkills);
   const [conversations, setConversations] = useState<Conversation[]>(defaultConversations);
   const [theme, setTheme] = useState<'light' | 'dark'>('light');
+  const [activeTab, setActiveTab] = useState<number>(0);
 
   // Apply theme class to body
   useEffect(() => {
@@ -254,7 +257,8 @@ export function AppProvider({ children }: { children: ReactNode }) {
   return (
     <AppContext.Provider value={{ 
       user, mySkills, discoverSkills, conversations, theme, setTheme, updateUser, 
-      addSkill, updateSkill, deleteSkill, updateCredits, buySkill, sendMessage 
+      addSkill, updateSkill, deleteSkill, updateCredits, buySkill, sendMessage,
+      activeTab, setActiveTab
     }}>
       {children}
     </AppContext.Provider>

@@ -1,8 +1,10 @@
 import { TypewriterText } from "@/components/ui/typewriter-text"
 import DiscoverPassions from '@/components/ui/hero-scroll-animation'
 import { UserSearch, Handshake, Sparkles as SparkleIcon } from "lucide-react"
+import { useAppContext } from "@/contexts/AppContext"
 
 export function Home() {
+  const { setActiveTab } = useAppContext();
   return (
     <div className="w-full relative">
       <main className="relative w-full min-h-screen flex flex-col items-center justify-center px-6 pb-20 pt-24 bg-slate-50 dark:bg-slate-900 transition-colors duration-300 overflow-hidden">
@@ -78,7 +80,7 @@ export function Home() {
             Get Started <br />
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-purple-400 to-emerald-400">Now !</span>
           </h2>
-          <button className="px-8 py-4 md:px-12 md:py-6 rounded-full bg-white text-slate-900 font-extrabold text-xl md:text-2xl hover:scale-105 active:scale-95 transition-all duration-200 shadow-[0_0_40px_rgba(255,255,255,0.3)] hover:shadow-[0_0_60px_rgba(255,255,255,0.5)] cursor-pointer">
+          <button onClick={() => setActiveTab(1)} className="px-8 py-4 md:px-12 md:py-6 rounded-full bg-white text-slate-900 font-extrabold text-xl md:text-2xl hover:scale-105 active:scale-95 transition-all duration-200 shadow-[0_0_40px_rgba(255,255,255,0.3)] hover:shadow-[0_0_60px_rgba(255,255,255,0.5)] cursor-pointer">
             Join Navic Today
           </button>
         </div>
