@@ -5,6 +5,7 @@ import { BottomNavBar } from '@/components/ui/bottom-nav-bar'
 import { Home } from '@/pages/Home'
 import { Discover } from '@/pages/Discover'
 import { MySpace } from '@/pages/MySpace'
+import { Chat } from '@/pages/Chat'
 import { Settings } from './pages/Settings'
 
 function App() {
@@ -15,7 +16,8 @@ function App() {
       case 0: return <Home />;
       case 1: return <Discover />;
       case 2: return <MySpace />;
-      case 4: return <Settings />;
+      case 4: return <Chat />;
+      case 5: return <Settings />;
       // Fallback for Notifications (3) until built
       default: return <Home />;
     }

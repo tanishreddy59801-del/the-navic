@@ -27,10 +27,29 @@ export type User = {
   status: UserStatus;
 };
 
+export type Message = {
+  id: string;
+  senderId: 'me' | string;
+  text: string;
+  timestamp: string;
+};
+
+export type Conversation = {
+  id: string;
+  partnerName: string;
+  partnerAvatarUrl: string;
+  lastMessage: string;
+  lastMessageTime: string;
+  unreadCount: number;
+  messages: Message[];
+  isOnline?: boolean;
+};
+
 type AppContextType = {
   user: User;
   mySkills: Skill[];
   discoverSkills: Skill[];
+  conversations: Conversation[];
   theme: 'light' | 'dark';
   setTheme: (theme: 'light' | 'dark') => void;
   updateUser: (updates: Partial<User>) => void;
@@ -39,6 +58,7 @@ type AppContextType = {
   deleteSkill: (id: string) => void;
   updateCredits: (amount: number) => void;
   buySkill: (skill: Skill) => void;
+  sendMessage: (conversationId: string, text: string) => void;
 };
 
 const defaultUser: User = {
@@ -49,6 +69,50 @@ const defaultUser: User = {
   hoursTaught: 8,
   status: 'online',
 };
+
+const defaultConversations: Conversation[] = [
+  {
+    id: 'c1',
+    partnerName: 'Sarah J.',
+    partnerAvatarUrl: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=150&auto=format&fit=crop',
+    lastMessage: 'Let me know if you need help with the Framer Motion layout animations.',
+    lastMessageTime: '10:42 AM',
+    unreadCount: 2,
+    isOnline: true,
+    messages: [
+      { id: 'm1', senderId: 'c1', text: 'Hi Tanish! Thanks for enrolling in my course.', timestamp: '10:40 AM' },
+      { id: 'm2', senderId: 'me', text: 'Hey Sarah! Super excited to learn.', timestamp: '10:41 AM' },
+      { id: 'm3', senderId: 'c1', text: 'Awesome. We will start with spring physics.', timestamp: '10:41 AM' },
+      { id: 'm4', senderId: 'c1', text: 'Let me know if you need help with the Framer Motion layout animations.', timestamp: '10:42 AM' }
+    ]
+  },
+  {
+    id: 'c2',
+    partnerName: 'Chef Pierre',
+    partnerAvatarUrl: 'https://images.unsplash.com/photo-1583394838336-acd977736f90?q=80&w=150&auto=format&fit=crop',
+    lastMessage: 'Did you remember to feed your starter today?',
+    lastMessageTime: 'Yesterday',
+    unreadCount: 0,
+    isOnline: false,
+    messages: [
+      { id: 'm1', senderId: 'c2', text: 'Bonjour! Welcome to the sourdough class.', timestamp: 'Yesterday' },
+      { id: 'm2', senderId: 'me', text: 'Thanks Chef! Im ready.', timestamp: 'Yesterday' },
+      { id: 'm3', senderId: 'c2', text: 'Did you remember to feed your starter today?', timestamp: 'Yesterday' }
+    ]
+  },
+  {
+    id: 'c3',
+    partnerName: 'Alex T.',
+    partnerAvatarUrl: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=150&auto=format&fit=crop',
+    lastMessage: 'Drink plenty of water before our HIIT session.',
+    lastMessageTime: 'Tuesday',
+    unreadCount: 0,
+    isOnline: true,
+    messages: [
+      { id: 'm1', senderId: 'c3', text: 'Drink plenty of water before our HIIT session.', timestamp: 'Tuesday' }
+    ]
+  }
+];
 
 const defaultSkills: Skill[] = [
   {
@@ -92,6 +156,7 @@ export function AppProvider({ children }: { children: ReactNode }) {
   const [user, setUser] = useState<User>(defaultUser);
   const [mySkills, setMySkills] = useState<Skill[]>(defaultSkills);
   const [discoverSkills, setDiscoverSkills] = useState<Skill[]>(defaultDiscoverSkills);
+  const [conversations, setConversations] = useState<Conversation[]>(defaultConversations);
   const [theme, setTheme] = useState<'light' | 'dark'>('light');
 
   // Apply theme class to body
@@ -142,10 +207,54 @@ export function AppProvider({ children }: { children: ReactNode }) {
     }
   };
 
+  const sendMessage = (conversationId: string, text: string) => {
+    const newMessage: Message = {
+      id: Math.random().toString(36).substring(2, 9),
+      senderId: 'me',
+      text,
+      timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
+    };
+
+    setConversations(prev => prev.map(conv => {
+      if (conv.id === conversationId) {
+        return {
+          ...conv,
+          lastMessage: text,
+          lastMessageTime: newMessage.timestamp,
+          messages: [...conv.messages, newMessage]
+        };
+      }
+      return conv;
+    }));
+
+    // Mock reply after delay
+    setTimeout(() => {
+      const replyMessage: Message = {
+        id: Math.random().toString(36).substring(2, 9),
+        senderId: conversationId,
+        text: 'That sounds great! Let me know if you need anything else.',
+        timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
+      };
+      
+      setConversations(prev => prev.map(conv => {
+        if (conv.id === conversationId) {
+          return {
+            ...conv,
+            lastMessage: replyMessage.text,
+            lastMessageTime: replyMessage.timestamp,
+            unreadCount: conv.unreadCount + 1,
+            messages: [...conv.messages, replyMessage]
+          };
+        }
+        return conv;
+      }));
+    }, 2000);
+  };
+
   return (
     <AppContext.Provider value={{ 
-      user, mySkills, discoverSkills, theme, setTheme, updateUser, 
-      addSkill, updateSkill, deleteSkill, updateCredits, buySkill 
+      user, mySkills, discoverSkills, conversations, theme, setTheme, updateUser, 
+      addSkill, updateSkill, deleteSkill, updateCredits, buySkill, sendMessage 
     }}>
       {children}
     </AppContext.Provider>

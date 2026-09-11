@@ -9,6 +9,7 @@ import {
   BookOpen,
   Bell,
   CircleHelp,
+  MessageCircle,
   type LucideIcon,
   LogOut,
   Settings,
@@ -31,7 +32,7 @@ const navItems: NavItem[] = [
   { label: "Discover", icon: Sparkles, id: "discover" },
   { label: "My space", icon: BookOpen, id: "dashboard" },
   { label: "Notifications", icon: Bell, id: "notifications" },
-  { label: "Help", icon: CircleHelp, id: "help" },
+  { label: "Chat", icon: MessageCircle, id: "chat" },
 ];
 
 function ProfileDropdown({ onSettingsClick }: { onSettingsClick: () => void }) {
@@ -213,7 +214,7 @@ export function BottomNavBar({
       <div className="w-[2px] h-8 bg-slate-200 mx-2 rounded-full" />
 
       {/* Custom Profile Dropdown */}
-      <ProfileDropdown onSettingsClick={() => handleTabClick(4)} />
+      <ProfileDropdown onSettingsClick={() => handleTabClick(5)} />
     </motion.nav>
   );
 }
