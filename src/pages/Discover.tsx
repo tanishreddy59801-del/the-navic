@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Clock, ArrowRight, Coins, Code, Palette, Music, Globe, ChefHat, Dumbbell, LayoutGrid } from 'lucide-react';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import { AnimatedSearchBar } from '@/components/ui/animated-search-bar';
 import { useAppContext } from '@/contexts/AppContext';
 import { Footer } from '@/components/ui/footer';
@@ -25,7 +25,7 @@ const containerVariants = {
 
 const itemVariants = {
   hidden: { opacity: 0, y: 20 },
-  show: { opacity: 1, y: 0, transition: { type: "spring", stiffness: 300, damping: 24 } }
+  show: { opacity: 1, y: 0, transition: { type: "spring" as const, stiffness: 300, damping: 24 } }
 };
 
 function SkeletonCard() {

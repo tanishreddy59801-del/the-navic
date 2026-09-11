@@ -24,7 +24,7 @@ export function TypewriterText({
 
   useEffect(() => {
     const word = words[currentWordIndex];
-    let timeout: NodeJS.Timeout;
+    let timeout: ReturnType<typeof setTimeout>;
 
     if (!isDeleting) {
       if (currentText.length < word.length) {

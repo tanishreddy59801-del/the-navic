@@ -32,7 +32,7 @@ export function AddSkillModal({ isOpen, onClose }: AddSkillModalProps) {
     onClose();
     setTimeout(() => {
       setCurrentStep(1);
-      setFormData({ title: '', category: '', description: '', duration: '', classes: '' });
+      setFormData({ title: '', category: '', description: '', duration: '', classes: '', price: '' });
     }, 300); // Reset after exit animation
   };
 
@@ -251,6 +251,7 @@ export function AddSkillModal({ isOpen, onClose }: AddSkillModalProps) {
                       description: formData.description,
                       duration: Number(formData.duration) || 45,
                       classes: Number(formData.classes) || 1,
+                      price: Number(formData.price) || 0,
                       color: 'blue'
                     });
                     handleClose();
