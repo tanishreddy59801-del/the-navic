@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Clock, ArrowRight, Coins, Code, Palette, Music, Globe, ChefHat, Dumbbell, LayoutGrid } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { AnimatedSearchBar } from '@/components/ui/animated-search-bar';
 import { useAppContext } from '@/contexts/AppContext';
+import { Footer } from '@/components/ui/footer';
 
 const categories = [
   { name: "All", icon: <LayoutGrid size={16} /> },
@@ -27,10 +28,45 @@ const itemVariants = {
   show: { opacity: 1, y: 0, transition: { type: "spring", stiffness: 300, damping: 24 } }
 };
 
+function SkeletonCard() {
+  return (
+    <div className="bg-white/50 dark:bg-slate-800/50 backdrop-blur-xl rounded-[2.5rem] p-8 border border-white dark:border-slate-700 shadow-sm flex flex-col h-[400px] overflow-hidden relative animate-pulse">
+      <div className="flex items-start justify-between gap-4 mb-6 relative z-10">
+        <div className="w-full">
+          <div className="h-6 w-24 bg-slate-200 dark:bg-slate-700 rounded-xl mb-4"></div>
+          <div className="h-8 w-3/4 bg-slate-200 dark:bg-slate-700 rounded-xl mb-3"></div>
+          <div className="h-6 w-20 bg-slate-200 dark:bg-slate-700 rounded-md"></div>
+        </div>
+      </div>
+      <div className="flex-grow space-y-2 mb-8">
+        <div className="h-4 w-full bg-slate-200 dark:bg-slate-700 rounded-md"></div>
+        <div className="h-4 w-5/6 bg-slate-200 dark:bg-slate-700 rounded-md"></div>
+      </div>
+      <div className="flex items-center gap-3 mb-8">
+        <div className="w-12 h-12 rounded-full bg-slate-200 dark:bg-slate-700"></div>
+        <div className="h-4 w-24 bg-slate-200 dark:bg-slate-700 rounded-md"></div>
+      </div>
+      <div className="pt-6 border-t border-slate-100 dark:border-slate-700/50 mt-auto flex items-center justify-between">
+        <div className="space-y-2">
+          <div className="h-6 w-16 bg-slate-200 dark:bg-slate-700 rounded-md"></div>
+          <div className="h-4 w-20 bg-slate-200 dark:bg-slate-700 rounded-md"></div>
+        </div>
+        <div className="h-12 w-24 bg-slate-200 dark:bg-slate-700 rounded-2xl"></div>
+      </div>
+    </div>
+  );
+}
+
 export function Discover() {
   const [activeCategory, setActiveCategory] = useState("All");
   const [searchQuery, setSearchQuery] = useState("");
+  const [isLoading, setIsLoading] = useState(true);
   const { discoverSkills, buySkill } = useAppContext();
+
+  useEffect(() => {
+    const timer = setTimeout(() => setIsLoading(false), 800);
+    return () => clearTimeout(timer);
+  }, []);
 
   const filteredSkills = discoverSkills.filter(skill => {
     const matchesCategory = activeCategory === "All" || skill.category === activeCategory;
@@ -80,7 +116,11 @@ export function Discover() {
         </div>
 
         {/* Cards Grid */}
-        {filteredSkills.length === 0 ? (
+        {isLoading ? (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {[...Array(6)].map((_, i) => <SkeletonCard key={i} />)}
+          </div>
+        ) : filteredSkills.length === 0 ? (
           <div className="text-center py-20 bg-white/50 dark:bg-slate-800/50 backdrop-blur-xl rounded-[3rem] border-2 border-dashed border-slate-200 dark:border-slate-700">
             <Globe className="mx-auto mb-6 text-slate-300 dark:text-slate-600" size={64} />
             <h2 className="text-2xl font-bold text-slate-800 dark:text-white mb-2">No skills found</h2>
@@ -181,6 +221,7 @@ export function Discover() {
           </motion.div>
         )}
       </div>
+      <Footer />
     </div>
   );
 }

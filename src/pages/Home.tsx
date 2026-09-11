@@ -2,6 +2,7 @@ import { TypewriterText } from "@/components/ui/typewriter-text"
 import DiscoverPassions from '@/components/ui/hero-scroll-animation'
 import { UserSearch, Handshake, Sparkles as SparkleIcon } from "lucide-react"
 import { useAppContext } from "@/contexts/AppContext"
+import { Footer } from "@/components/ui/footer"
 
 export function Home() {
   const { setActiveTab } = useAppContext();
@@ -85,6 +86,8 @@ export function Home() {
           </button>
         </div>
       </section>
+
+      <Footer />
     </div>
   )
 }

@@ -10,17 +10,21 @@ import { Settings } from './pages/Settings'
 
 import { useAppContext } from './contexts/AppContext'
 
+import { Notifications } from '@/pages/Notifications'
+import { AuthModal } from '@/components/ui/auth-modal'
+
 function App() {
   const { activeTab, setActiveTab } = useAppContext();
+  const [showAuth, setShowAuth] = useState(true);
 
   const renderContent = () => {
     switch (activeTab) {
       case 0: return <Home />;
       case 1: return <Discover />;
       case 2: return <MySpace />;
+      case 3: return <Notifications />;
       case 4: return <Chat />;
       case 5: return <Settings />;
-      // Fallback for Notifications (3) until built
       default: return <Home />;
     }
   };
@@ -45,6 +49,15 @@ function App() {
 
       {renderContent()}
       
+      <AuthModal 
+        isOpen={showAuth} 
+        onClose={() => setShowAuth(false)} 
+        onLogin={() => {
+          setShowAuth(false);
+          import('sonner').then(({ toast }) => toast.success("Welcome back!", { description: "You have successfully signed in." }));
+        }} 
+      />
+
       <Toaster richColors position="bottom-right" theme="system" />
     </div>
   )
