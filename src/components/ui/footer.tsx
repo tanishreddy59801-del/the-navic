@@ -52,18 +52,9 @@ export function Footer() {
             </ul>
           </div>
 
-          <div className="lg:col-span-2">
-            <h3 className="text-white font-bold mb-6 tracking-wide uppercase text-sm">Company</h3>
-            <ul className="space-y-4">
-              <li><a href="#" className="text-slate-400 hover:text-white transition-colors font-medium">About Us</a></li>
-              <li><a href="#" className="text-slate-400 hover:text-white transition-colors font-medium">Careers</a></li>
-              <li><a href="#" className="text-slate-400 hover:text-white transition-colors font-medium">Blog</a></li>
-              <li><a href="#" className="text-slate-400 hover:text-white transition-colors font-medium">Press</a></li>
-            </ul>
-          </div>
 
           {/* Newsletter Column */}
-          <div className="lg:col-span-4">
+          <div className="lg:col-span-6">
             <h3 className="text-white font-bold mb-6 tracking-wide uppercase text-sm">Stay Updated</h3>
             <p className="text-slate-400 font-medium mb-4">
               Get the latest news and updates from the Navic community directly to your inbox.
