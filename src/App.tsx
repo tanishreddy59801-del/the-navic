@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { Toaster } from 'sonner'
 import { Logo } from './components/Logo'
 import { BottomNavBar } from '@/components/ui/bottom-nav-bar'
 import { Home } from '@/pages/Home'
@@ -39,6 +40,8 @@ function App() {
       </header>
 
       {renderContent()}
+      
+      <Toaster richColors position="bottom-right" theme="system" />
     </div>
   )
 }

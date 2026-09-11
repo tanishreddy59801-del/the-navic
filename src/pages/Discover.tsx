@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Clock, ArrowRight, Coins, Code, Palette, Music, Globe, ChefHat, Dumbbell, LayoutGrid } from 'lucide-react';
+import { motion } from 'framer-motion';
 import { AnimatedSearchBar } from '@/components/ui/animated-search-bar';
 import { useAppContext } from '@/contexts/AppContext';
 
@@ -12,6 +13,19 @@ const categories = [
   { name: "Culinary", icon: <ChefHat size={16} /> },
   { name: "Fitness", icon: <Dumbbell size={16} /> }
 ];
+
+const containerVariants = {
+  hidden: { opacity: 0 },
+  show: {
+    opacity: 1,
+    transition: { staggerChildren: 0.1 }
+  }
+};
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 20 },
+  show: { opacity: 1, y: 0, transition: { type: "spring", stiffness: 300, damping: 24 } }
+};
 
 export function Discover() {
   const [activeCategory, setActiveCategory] = useState("All");
@@ -73,9 +87,14 @@ export function Discover() {
             <p className="text-slate-500 dark:text-slate-400">Try adjusting your search or selecting a different category.</p>
           </div>
         ) : (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <motion.div 
+            variants={containerVariants}
+            initial="hidden"
+            animate="show"
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+          >
             {filteredSkills.map((skill) => (
-              <div key={skill.id} className="group bg-white/80 dark:bg-slate-800/80 backdrop-blur-xl rounded-[2.5rem] p-8 border border-white dark:border-slate-700 shadow-xl shadow-slate-200/40 dark:shadow-none hover:-translate-y-2 hover:shadow-2xl hover:shadow-slate-200/60 dark:hover:shadow-blue-500/10 transition-all duration-500 flex flex-col h-full overflow-hidden relative">
+              <motion.div variants={itemVariants} key={skill.id} className="group bg-white/80 dark:bg-slate-800/80 backdrop-blur-xl rounded-[2.5rem] p-8 border border-white dark:border-slate-700 shadow-xl shadow-slate-200/40 dark:shadow-none hover:-translate-y-2 hover:shadow-2xl hover:shadow-slate-200/60 dark:hover:shadow-blue-500/10 transition-all duration-500 flex flex-col h-full overflow-hidden relative">
                 
                 {/* Subtle top gradient glow on card based on color */}
                 <div className={`absolute top-0 left-0 w-full h-32 opacity-20 dark:opacity-10 pointer-events-none bg-gradient-to-b to-transparent
@@ -113,9 +132,21 @@ export function Discover() {
                 </p>
                 
                 <div className="flex items-center gap-3 mb-8 relative z-10">
-                   <div className="w-10 h-10 rounded-full bg-gradient-to-br from-slate-200 to-slate-300 dark:from-slate-700 dark:to-slate-600 flex items-center justify-center font-bold text-slate-500 dark:text-slate-300 shadow-inner">
-                      {skill.instructor?.[0] || 'A'}
-                   </div>
+                   {skill.instructorAvatarUrl ? (
+                     <div className={`w-12 h-12 rounded-full p-[2px] bg-gradient-to-br
+                       ${skill.color === 'blue' ? 'from-blue-400 to-blue-600' : ''}
+                       ${skill.color === 'purple' ? 'from-purple-400 to-purple-600' : ''}
+                       ${skill.color === 'emerald' ? 'from-emerald-400 to-emerald-600' : ''}
+                       ${skill.color === 'amber' ? 'from-amber-400 to-amber-600' : ''}
+                       ${skill.color === 'rose' ? 'from-rose-400 to-rose-600' : ''}
+                     `}>
+                       <img src={skill.instructorAvatarUrl} alt={skill.instructor} className="w-full h-full object-cover rounded-full border-2 border-white dark:border-slate-800" />
+                     </div>
+                   ) : (
+                     <div className="w-10 h-10 rounded-full bg-gradient-to-br from-slate-200 to-slate-300 dark:from-slate-700 dark:to-slate-600 flex items-center justify-center font-bold text-slate-500 dark:text-slate-300 shadow-inner">
+                        {skill.instructor?.[0] || 'A'}
+                     </div>
+                   )}
                    <span className="text-sm font-bold text-slate-700 dark:text-slate-300">By {skill.instructor || 'Anonymous'}</span>
                 </div>
 
@@ -145,9 +176,9 @@ export function Discover() {
                     Buy <ArrowRight size={18} strokeWidth={3} className="group-hover:translate-x-1 transition-transform" />
                   </button>
                 </div>
-              </div>
+              </motion.div>
             ))}
-          </div>
+          </motion.div>
         )}
       </div>
     </div>

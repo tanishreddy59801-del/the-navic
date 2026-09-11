@@ -211,28 +211,40 @@ export function MySpace() {
 
                 {/* Existing Skills */}
                 {mySkills.map(skill => (
-                  <div key={skill.id} className="bg-white dark:bg-slate-800 rounded-[2rem] p-6 border-2 border-slate-100 dark:border-slate-700 shadow-xl shadow-slate-200/30 dark:shadow-none flex flex-col hover:-translate-y-2 transition-transform duration-300">
-                    <div className="flex-1">
-                      <span className={`inline-block px-3 py-1 rounded-full text-xs font-black uppercase tracking-wider mb-4
-                        ${skill.color === 'blue' ? 'bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400' : ''}
-                        ${skill.color === 'purple' ? 'bg-purple-100 dark:bg-purple-900/30 text-purple-600 dark:text-purple-400' : ''}
-                        ${skill.color === 'emerald' ? 'bg-emerald-100 dark:bg-emerald-900/30 text-emerald-600 dark:text-emerald-400' : ''}
+                  <div key={skill.id} className="group bg-white/80 dark:bg-slate-800/80 backdrop-blur-xl rounded-[2.5rem] p-6 border border-white dark:border-slate-700 shadow-xl shadow-slate-200/40 dark:shadow-none hover:-translate-y-2 hover:shadow-2xl hover:shadow-slate-200/60 dark:hover:shadow-blue-500/10 transition-all duration-500 flex flex-col h-full overflow-hidden relative">
+                    
+                    {/* Subtle top gradient glow on card based on color */}
+                    <div className={`absolute top-0 left-0 w-full h-32 opacity-20 dark:opacity-10 pointer-events-none bg-gradient-to-b to-transparent
+                      ${skill.color === 'blue' ? 'from-blue-500' : ''}
+                      ${skill.color === 'purple' ? 'from-purple-500' : ''}
+                      ${skill.color === 'emerald' ? 'from-emerald-500' : ''}
+                      ${skill.color === 'amber' ? 'from-amber-500' : ''}
+                      ${skill.color === 'rose' ? 'from-rose-500' : ''}
+                    `} />
+
+                    <div className="flex-1 relative z-10">
+                      <span className={`inline-flex items-center justify-center px-3 py-1.5 rounded-xl text-[10px] font-black uppercase tracking-widest mb-4 transition-colors
+                        ${skill.color === 'blue' ? 'bg-blue-100/80 dark:bg-blue-900/40 text-blue-700 dark:text-blue-300' : ''}
+                        ${skill.color === 'purple' ? 'bg-purple-100/80 dark:bg-purple-900/40 text-purple-700 dark:text-purple-300' : ''}
+                        ${skill.color === 'emerald' ? 'bg-emerald-100/80 dark:bg-emerald-900/40 text-emerald-700 dark:text-emerald-300' : ''}
+                        ${skill.color === 'amber' ? 'bg-amber-100/80 dark:bg-amber-900/40 text-amber-700 dark:text-amber-300' : ''}
+                        ${skill.color === 'rose' ? 'bg-rose-100/80 dark:bg-rose-900/40 text-rose-700 dark:text-rose-300' : ''}
                       `}>
                         {skill.category}
                       </span>
-                      <h3 className="font-bold text-xl text-slate-800 dark:text-white mb-2 leading-tight">{skill.title}</h3>
+                      <h3 className="font-bold text-2xl text-slate-800 dark:text-white mb-2 leading-tight">{skill.title}</h3>
                     </div>
                     
-                    <div className="flex items-center gap-3 mt-6 pt-6 border-t border-slate-100 dark:border-slate-700">
-                      <button className="flex-1 flex items-center justify-center gap-2 py-2.5 bg-slate-50 dark:bg-slate-700/50 text-slate-600 dark:text-slate-300 rounded-xl font-bold hover:bg-slate-100 dark:hover:bg-slate-700 transition-colors">
-                        <Edit2 size={16} strokeWidth={2.5} />
+                    <div className="flex items-center gap-3 mt-6 pt-6 border-t border-slate-100 dark:border-slate-700/50 relative z-10">
+                      <button className="flex-1 flex items-center justify-center gap-2 py-3 bg-slate-50 dark:bg-slate-700/50 text-slate-600 dark:text-slate-300 rounded-xl font-bold hover:bg-slate-100 dark:hover:bg-slate-600 transition-colors">
+                        <Edit2 size={18} strokeWidth={2.5} />
                         Edit
                       </button>
                       <button 
                         onClick={() => deleteSkill(skill.id)}
-                        className="w-12 h-11 flex items-center justify-center bg-red-50 dark:bg-red-500/10 text-red-500 dark:text-red-400 rounded-xl hover:bg-red-100 dark:hover:bg-red-500/20 transition-colors"
+                        className="w-14 h-12 flex items-center justify-center bg-red-50 dark:bg-red-500/10 text-red-500 dark:text-red-400 rounded-xl hover:bg-red-100 dark:hover:bg-red-500/20 transition-colors"
                       >
-                        <Trash2 size={18} strokeWidth={2.5} />
+                        <Trash2 size={20} strokeWidth={2.5} />
                       </button>
                     </div>
                   </div>
