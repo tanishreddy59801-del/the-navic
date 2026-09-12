@@ -9,7 +9,7 @@
 ## 📋 Participant Information
 - **Project Title:** Navic
 - **Participant Name:** Tanish Reddy
-- **Category Level:** [Please fill in: Middle (11-13) or Senior (14-16)]
+- **Category Level:** Senior (14-16 years)
 
 ---
 
