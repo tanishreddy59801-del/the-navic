@@ -2,16 +2,9 @@
 
 import * as React from "react";
 import { useEffect, useRef } from "react";
-import { gsap } from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { ArrowRight, Mail, Globe, MessageSquare, Briefcase, Code } from 'lucide-react';
 import { Logo } from '../Logo';
 import { useAppContext } from '@/contexts/AppContext';
-
-// Register ScrollTrigger safely for React
-if (typeof window !== "undefined") {
-  gsap.registerPlugin(ScrollTrigger);
-}
 
 const STYLES = `
 @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800;900&display=swap');
@@ -23,36 +16,7 @@ const STYLES = `
 `;
 
 export function CinematicFooter() {
-  const wrapperRef = useRef<HTMLDivElement>(null);
-  const linksRef = useRef<HTMLDivElement>(null);
   const { setActiveTab } = useAppContext();
-
-  useEffect(() => {
-    if (typeof window === "undefined") return;
-    if (!wrapperRef.current) return;
-
-    // React strict mode compatible GSAP context cleanup
-    const ctx = gsap.context(() => {
-      // Staggered Content Reveal
-      gsap.fromTo(
-        linksRef.current,
-        { y: 50, opacity: 0 },
-        {
-          y: 0,
-          opacity: 1,
-          ease: "power3.out",
-          scrollTrigger: {
-            trigger: wrapperRef.current,
-            start: "top 80%",
-            end: "bottom bottom",
-            scrub: 1,
-          },
-        }
-      );
-    }, wrapperRef);
-
-    return () => ctx.revert();
-  },[]);
 
   return (
     <>
@@ -62,7 +26,6 @@ export function CinematicFooter() {
         Footer Container
       */}
       <div
-        ref={wrapperRef}
         className="relative w-full overflow-hidden"
       >
         {/* The actual footer stays in normal document flow */}
@@ -73,7 +36,7 @@ export function CinematicFooter() {
           <div className="absolute bottom-[-20%] left-[-10%] w-[500px] h-[500px] rounded-full bg-purple-600/10 blur-[120px] pointer-events-none z-0" />
 
           {/* Center Content from original footer */}
-          <div ref={linksRef} className="max-w-7xl w-full mx-auto px-6 relative z-10 pb-8 pt-12">
+          <div className="max-w-7xl w-full mx-auto px-6 relative z-10 pb-8 pt-12">
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-12 lg:gap-8 mb-16">
               
               {/* Brand Column */}
