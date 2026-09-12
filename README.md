@@ -1,4 +1,4 @@
-# Navic - The Premier Skill Swapping Platform
+# Navic - The Skill Swapping Platform
 
 ![Navic Logo / Banner](https://thenavic.vercel.app/favicon.ico)
 
@@ -6,74 +6,74 @@
 
 ---
 
-## 📋 Participant Information
+## 📋 Who We Are
 - **Project Title:** Navic
-- **Participant Name:** Tanish Reddy
+- **Creators / Participants:** Tanish, Diaptayan, and Devarsh
 - **Category Level:** Senior (14-16 years)
 
 ---
 
-## 🎯 Theme Analysis & Problem Statement
-**Problem Statement:** 
-Learning new, highly specialized skills (like programming, a new language, or graphic design) is often locked behind expensive courses, tutors, or paywalls. Simultaneously, many talented individuals want to learn a new skill but don't realize that the knowledge they *already possess* is highly valuable to someone else. There is a lack of accessible platforms where knowledge can be traded freely without monetary barriers.
+## 🎯 Why We Built This (The Problem & Theme)
+Learning new, highly specialized skills—like coding, speaking a new language, or graphic design—is usually locked behind expensive courses, tutors, or paywalls. At the same time, so many talented people want to learn something new, but they don't realize that the knowledge they *already have* is incredibly valuable to someone else. 
 
-## 👥 Target Users
-- **Lifelong Learners & Students:** Individuals eager to acquire new skills without financial constraints.
-- **Professionals & Experts:** People looking to trade their domain expertise for knowledge in a completely different field.
-- **Hobbyists:** Creatives wanting to connect and exchange passions (e.g., trading guitar lessons for cooking tips).
+There really isn't a good, accessible platform where people can just trade knowledge freely without money getting in the way.
 
-## 💡 Proposed Solution
-**Navic** is a decentralized, peer-to-peer skill-swapping web application. Instead of paying for classes, users can list the skills they want to teach and the skills they want to learn. The platform connects them with ideal matches, allowing them to trade knowledge for knowledge. No money is involved—just pure educational exchange and community building.
+## 👥 Who Is This For?
+- **Students & Lifelong Learners:** People who want to learn new skills but don't have the budget for expensive classes.
+- **Professionals & Experts:** People who want to trade their work expertise for knowledge in a totally different hobby or field.
+- **Creatives & Hobbyists:** Anyone wanting to connect and exchange passions (like trading guitar lessons for cooking tips).
+
+## 💡 Our Solution
+We built **Navic**, a peer-to-peer skill-swapping web app. Instead of paying for classes, you list the skills you want to teach and the skills you want to learn. Our platform connects you with ideal matches so you can trade knowledge for knowledge. No money is involved—just pure educational exchange and building a community.
 
 ---
 
-## 🗺️ Information Architecture & User Flow
+## 🗺️ How It Works (Architecture & User Flow)
 **Sitemap:**
-- `Home` - Landing page with cinematic hero, feature breakdown, and call-to-action.
-- `Discover` - Feed of potential matches and a dynamic search bar to find specific skills.
-- `Chat` - Built-in real-time messaging interface for negotiating swaps and communication.
-- `My Schedule` - Calendar integration to track upcoming learning sessions.
-- `My Space` - User profile dashboard to manage offered and requested skills.
+- `Home` - The landing page that explains what Navic is and how it works.
+- `Discover` - A feed where you can browse potential matches and search for specific skills.
+- `Chat` - A built-in messaging system to talk with your matches and negotiate your swap.
+- `My Schedule` - A calendar to keep track of your upcoming learning sessions.
+- `My Space` - Your personal dashboard to manage your profile and the skills you offer.
 
-**User Flow Diagram:**
-1. User lands on the **Home** page and clicks "Get Started".
-2. User creates an account/logs in via the **Auth Modal**.
-3. User browses the **Discover** feed or searches for a specific skill.
-4. User finds a match and clicks "Request Swap".
-5. Both users enter the **Chat** interface to negotiate terms.
-6. A session is scheduled and appears in **My Schedule**.
-
----
-
-## 🎨 Design Decisions & UI Concepts
-The design philosophy behind Navic is centered around modern aesthetics, high usability, and a premium feel:
-- **Typography-First Design:** Utilizing modern, friendly fonts (`Fredoka` and `Plus Jakarta Sans`) to make the platform feel welcoming rather than rigidly academic.
-- **Micro-interactions:** Extensive use of smooth, spring-based animations on hover and scroll (powered by Framer Motion) to make the UI feel alive and responsive.
-- **Glassmorphism & Depth:** Using blurred backgrounds, soft gradients, and subtle shadows to create a layered, cinematic aesthetic.
-- **Dark Mode Support:** Full integration of a sleek dark mode for reduced eye strain and a premium look.
+**User Flow:**
+1. A user lands on the **Home** page and clicks "Get Started".
+2. They log in or create an account through the Auth Modal.
+3. They jump into the **Discover** feed to browse or search for a skill they want to learn.
+4. When they find a good match, they hit "Request Swap".
+5. Both users start talking in the **Chat** tab to figure out the details.
+6. They schedule a session, which pops up in **My Schedule**.
 
 ---
 
-## ⚙️ Technical Approach
-**Tech Stack:**
-- **Frontend Framework:** React 18
-- **Build Tool:** Vite (for rapid HMR and optimized production builds)
-- **Language:** TypeScript (for type safety and robust code architecture)
-- **Styling:** Tailwind CSS (for highly customizable, utility-first styling)
-- **Animations:** Framer Motion (for spring physics and layout animations)
+## 🎨 Design Decisions & UI
+We wanted Navic to look modern, clean, and premium. We specifically tried to avoid generic, boring templates.
+- **Typography:** We used friendly, modern fonts (`Fredoka` and `Plus Jakarta Sans`) so the platform feels welcoming and fun, not like a boring school website.
+- **Animations:** We added a lot of smooth, spring-based micro-animations (using Framer Motion and GSAP) on hover and scroll. It makes the website feel alive and highly interactive.
+- **Glassmorphism:** We used blurred backgrounds, soft gradients, and shadows to give the UI a layered, cinematic look.
+- **Dark Mode:** We built in a sleek dark mode because it reduces eye strain and just looks really cool.
+
+---
+
+## ⚙️ How We Built It (Tech Stack)
+- **Frontend:** React 18
+- **Build Tool:** Vite (for fast development and optimized builds)
+- **Language:** TypeScript (to catch bugs early and keep our code clean)
+- **Styling:** Tailwind CSS (made styling way faster without writing massive CSS files)
+- **Animations:** Framer Motion (for physics-based UI animations)
 - **Icons:** Lucide React
-- **Hosting:** Vercel (CI/CD automated deployment)
+- **Hosting:** Vercel (for automatic deployments whenever we push to GitHub)
 
 ---
 
 ## 🤖 AI Usage Log & Disclosure
 
-**Disclosure:** This project was developed with the assistance of AI tools for rapid prototyping, UI component generation, and debugging, while maintaining strict architectural oversight and creative direction by the student.
+**Disclosure:** We built this project from scratch, but we definitely used AI tools to help us code faster, figure out annoying bugs, and generate some of the boilerplate UI components. However, the actual idea, the design direction, the core architecture, and the problem-solving were all driven by us (Tanish, Diaptayan, and Devarsh).
 
-| AI Tool Used | Purpose of Use | Output Generated | Student Contribution & Modification |
+| AI Tool Used | Why We Used It | What It Generated | Our Contribution & Modification |
 | :--- | :--- | :--- | :--- |
-| **Gemini / Antigravity** | Code Generation & Debugging | React components, Tailwind layouts, Framer Motion animations. | Conceptualized the core architecture. Dictated the exact design system (glassmorphism, specific fonts). Rigorously tested components, directed the AI to refine micro-animations, and integrated the generated code into the Vite ecosystem. |
-| **ChatGPT / Copilot** | UI/UX Suggestions & Content | Copywriting for landing page, boilerplate function logic. | Edited and rewrote copy to fit the brand voice. Ensured the logic fit the specific routing and state-management needs of the `AppContext`. |
+| **Gemini / Antigravity** | Code Generation & Debugging | React components, Tailwind styling blocks, and some Framer Motion animations. | We conceptualized the core architecture and dictated the exact design system (like telling it to use glassmorphism and specific fonts). We rigorously tested the components, directed the AI to fix micro-animations when they looked bad, and manually integrated the generated code into our Vite setup. |
+| **ChatGPT / Copilot** | UI/UX Ideas & Content | First drafts of the text for the landing page and some basic function logic. | We heavily edited and rewrote the text to fit our brand voice so it didn't sound like a robot. We also had to modify the logic it gave us to actually work with our specific state management (`AppContext.tsx`). |
 
 **Understanding & Ownership:**
-I (Tanish) guided the development workflow entirely. While AI assisted in writing boilerplate and styling blocks, the problem statement, design decisions, component structuring, state management (`AppContext.tsx`), and overall user journey were exclusively designed and directed by me. I can fully explain the purpose and functionality of every React component and Tailwind class used in this project.
+Our team guided the entire development workflow. Even though AI helped us write some of the code faster, the problem statement, the design decisions, the way the components talk to each other, and the overall user journey were exclusively designed by us. We understand how our codebase works and can explain the purpose of the React components and Tailwind classes we used.
