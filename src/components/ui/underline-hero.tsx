@@ -1,10 +1,12 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
+import { useAppContext } from "@/contexts/AppContext";
 
 const words = ["learn", "grow", "teach", "share", "connect"];
 
 export function UnderlineHero() {
+  const { setActiveTab } = useAppContext();
   const [currentWordIndex, setCurrentWordIndex] = useState(0);
   const [currentText, setCurrentText] = useState("");
   const [isDeleting, setIsDeleting] = useState(false);
@@ -70,7 +72,13 @@ export function UnderlineHero() {
         </div>
 
         <div>
-          <button className="px-10 py-5 rounded-2xl bg-black dark:bg-white text-white dark:text-black font-bold text-xl hover:scale-105 active:scale-95 transition-all shadow-xl">
+          <button 
+            onClick={() => { 
+              setActiveTab(1); 
+              window.scrollTo({ top: 0, behavior: 'smooth' }); 
+            }}
+            className="px-10 py-5 rounded-2xl bg-black dark:bg-white text-white dark:text-black font-bold text-xl hover:scale-105 active:scale-95 transition-all shadow-xl"
+          >
             Get Started
           </button>
         </div>

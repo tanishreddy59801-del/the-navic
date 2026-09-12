@@ -59,17 +59,14 @@ export function CinematicFooter() {
       <style dangerouslySetInnerHTML={{ __html: STYLES }} />
       
       {/* 
-        The "Curtain Reveal" Wrapper:
-        It sits in standard flow. Because it has clip-path, its contents
-        are ONLY visible within its bounding box. 
+        Footer Container
       */}
       <div
         ref={wrapperRef}
-        className="relative h-[65vh] w-full"
-        style={{ clipPath: "polygon(0% 0, 100% 0%, 100% 100%, 0 100%)" }}
+        className="relative w-full overflow-hidden"
       >
-        {/* The actual footer stays fixed to the viewport underneath everything */}
-        <footer className="fixed bottom-0 left-0 flex h-[65vh] w-full flex-col justify-end overflow-hidden bg-slate-900 dark:bg-slate-950 cinematic-footer-wrapper">
+        {/* The actual footer stays in normal document flow */}
+        <footer className="relative flex w-full flex-col justify-end bg-slate-900 dark:bg-slate-950 cinematic-footer-wrapper">
           
           {/* Ambient Light & Grid Background */}
           <div className="absolute top-[-20%] right-[-10%] w-[500px] h-[500px] rounded-full bg-blue-600/10 blur-[120px] pointer-events-none z-0" />

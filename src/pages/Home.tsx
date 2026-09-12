@@ -111,7 +111,7 @@ export function Home() {
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12 pb-16">
             {/* Card 1 */}
-            <div className="group relative bg-white dark:bg-slate-800 rounded-[2rem] p-8 border-2 border-slate-100/80 dark:border-slate-700 shadow-[0_20px_50px_-20px_rgba(59,130,246,0.25)] dark:shadow-none hover:-translate-y-4 hover:-rotate-2 transition-all duration-300">
+            <div className="group relative bg-white dark:bg-slate-800 rounded-[2rem] p-8 border-2 border-slate-100/80 dark:border-slate-700 shadow-[0_20px_50px_-20px_rgba(59,130,246,0.25)] dark:shadow-none hover:-translate-y-2 transition-all duration-300">
               <div className="absolute -top-8 -right-6 w-20 h-20 bg-blue-100 dark:bg-blue-900/50 rounded-full flex items-center justify-center font-black text-4xl text-blue-600 dark:text-blue-400 border-[6px] border-white dark:border-slate-800 shadow-xl rotate-12 group-hover:rotate-0 transition-transform" style={{ fontFamily: "'Fredoka', sans-serif" }}>1</div>
               <div className="w-16 h-16 bg-blue-600 dark:bg-blue-500 rounded-2xl flex items-center justify-center text-white mb-6 rotate-3 group-hover:rotate-0 transition-transform shadow-lg shadow-blue-600/30">
                 <UserSearch size={32} strokeWidth={2.5} />
@@ -121,7 +121,7 @@ export function Home() {
             </div>
 
             {/* Card 2 */}
-            <div className="group relative bg-white dark:bg-slate-800 rounded-[2rem] p-8 border-2 border-slate-100/80 dark:border-slate-700 shadow-[0_20px_50px_-20px_rgba(168,85,247,0.25)] dark:shadow-none hover:-translate-y-4 transition-all duration-300 translate-y-0 md:translate-y-12">
+            <div className="group relative bg-white dark:bg-slate-800 rounded-[2rem] p-8 border-2 border-slate-100/80 dark:border-slate-700 shadow-[0_20px_50px_-20px_rgba(168,85,247,0.25)] dark:shadow-none hover:-translate-y-2 transition-all duration-300 translate-y-0 md:translate-y-12">
               <div className="absolute -top-8 -right-6 w-20 h-20 bg-purple-100 dark:bg-purple-900/50 rounded-full flex items-center justify-center font-black text-4xl text-purple-600 dark:text-purple-400 border-[6px] border-white dark:border-slate-800 shadow-xl -rotate-6 group-hover:rotate-0 transition-transform" style={{ fontFamily: "'Fredoka', sans-serif" }}>2</div>
               <div className="w-16 h-16 bg-purple-600 dark:bg-purple-500 rounded-2xl flex items-center justify-center text-white mb-6 -rotate-3 group-hover:rotate-0 transition-transform shadow-lg shadow-purple-600/30">
                 <Handshake size={32} strokeWidth={2.5} />
@@ -131,7 +131,7 @@ export function Home() {
             </div>
 
             {/* Card 3 */}
-            <div className="group relative bg-white dark:bg-slate-800 rounded-[2rem] p-8 border-2 border-slate-100/80 dark:border-slate-700 shadow-[0_20px_50px_-20px_rgba(16,185,129,0.25)] dark:shadow-none hover:-translate-y-4 hover:rotate-2 transition-all duration-300">
+            <div className="group relative bg-white dark:bg-slate-800 rounded-[2rem] p-8 border-2 border-slate-100/80 dark:border-slate-700 shadow-[0_20px_50px_-20px_rgba(16,185,129,0.25)] dark:shadow-none hover:-translate-y-2 transition-all duration-300">
               <div className="absolute -top-8 -right-6 w-20 h-20 bg-emerald-100 dark:bg-emerald-900/50 rounded-full flex items-center justify-center font-black text-4xl text-emerald-600 dark:text-emerald-400 border-[6px] border-white dark:border-slate-800 shadow-xl rotate-6 group-hover:rotate-0 transition-transform" style={{ fontFamily: "'Fredoka', sans-serif" }}>3</div>
               <div className="w-16 h-16 bg-emerald-500 dark:bg-emerald-400 rounded-2xl flex items-center justify-center text-white mb-6 rotate-3 group-hover:rotate-0 transition-transform shadow-lg shadow-emerald-500/30">
                 <SparkleIcon size={32} strokeWidth={2.5} />
@@ -151,7 +151,13 @@ export function Home() {
             Get Started <br />
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-purple-400 to-emerald-400">Now !</span>
           </h2>
-          <button onClick={() => setActiveTab(1)} className="px-8 py-4 md:px-12 md:py-6 rounded-full bg-white text-slate-900 font-extrabold text-xl md:text-2xl hover:scale-105 active:scale-95 transition-all duration-200 shadow-[0_0_40px_rgba(255,255,255,0.3)] hover:shadow-[0_0_60px_rgba(255,255,255,0.5)] cursor-pointer">
+          <button 
+            onClick={() => { 
+              setActiveTab(1); 
+              window.scrollTo({ top: 0, behavior: 'smooth' }); 
+            }} 
+            className="px-8 py-4 md:px-12 md:py-6 rounded-full bg-white text-slate-900 font-extrabold text-xl md:text-2xl hover:scale-105 active:scale-95 transition-all duration-200 shadow-[0_0_40px_rgba(255,255,255,0.3)] hover:shadow-[0_0_60px_rgba(255,255,255,0.5)] cursor-pointer"
+          >
             Join Navic Today
           </button>
         </div>
